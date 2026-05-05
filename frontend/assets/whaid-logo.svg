@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" fill="none">
+  <g transform="translate(4,6)">
+    <path d="M18 0C8 6 2 16 2 26c0 6 3 10 8 10 1 0 2 0 3-1-1-3-1-6 0-10 2-8 8-14 14-18C24 5 21 2 18 0z" fill="#bdff00"></path>
+    <path d="M18 0c2 4 3 9 2 15-2 10-9 18-17 21 2 0 3 0 5-1 10-3 19-13 21-25 1-4 0-8-1-10h-10z" fill="#18a758"></path>
+  </g>
+  <text x="52" y="33" font-family="DM Serif Display, Times, serif" font-size="28" font-weight="400" fill="currentColor" letter-spacing="0.5">Whaid</text>
+</svg>
