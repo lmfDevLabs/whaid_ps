@@ -1,268 +1,82 @@
-"use client";
+import {fetchPublishedPosts} from "../../lib/blogApi";
+import ImageWithFallback from "../../components/blog/ImageWithFallback";
 
-import Script from "next/script";
+export const dynamic = "force-dynamic";
 
-function handleNewsletterSubmit(event) {
-  event.preventDefault();
-  const input = event.currentTarget.querySelector("input");
-  input.value = "✓ Listo, te escribimos pronto";
-  input.disabled = true;
+const formatDate = (value) => {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return new Intl.DateTimeFormat("es", {day: "2-digit", month: "short", year: "numeric"}).format(date).toUpperCase();
+};
+
+function Nav() {
+  return (
+    <nav className="nav" aria-label="Principal">
+      <div className="nav__inner">
+        <a href="/" className="nav__logo" aria-label="Whaid"><img src="/assets/whaid-logo-nav.png" alt="Whaid" /></a>
+        <div className="nav__links" id="nav-menu"><a href="/" data-i18n="nav_home">Home</a><a href="/#keyshots" data-i18n="nav_product">Producto</a><a href="/#usecases" data-i18n="nav_use_cases">Casos de uso</a><a href="/blog" aria-current="page" data-i18n="nav_blog">Blog</a></div>
+        <div className="nav__actions"><button className="chip-btn" id="lang-switch" aria-label="Cambiar idioma">EN</button><button className="chip-btn" id="theme-switch" aria-label="Cambiar tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button><a href="/#demo" className="btn btn--primary btn--sm"><span data-i18n="nav_cta">Agendar demo</span></a><button className="menu-toggle" id="menu-toggle" aria-label="Menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button></div>
+      </div>
+    </nav>
+  );
 }
 
-export default function BlogPage() {
+function Footer() {
+  return (
+    <footer className="footer"><div className="container"><div className="footer__grid"><div><div className="footer__logo"><img src="/assets/whaid-logo.png" alt="Whaid" /></div><p className="footer__tag" data-i18n="footer_tagline">El asistente IA que responde por tus activos — desde WhatsApp.</p></div><div className="footer__col"><h4 data-i18n="footer_product">Producto</h4><ul><li><a href="/#keyshots">Capacidades</a></li><li><a href="/#usecases">Casos de uso</a></li><li><a href="#">Integraciones</a></li><li><a href="#">Seguridad</a></li><li><a href="#">Pricing</a></li></ul></div><div className="footer__col"><h4 data-i18n="footer_company">Compañía</h4><ul><li><a href="/blog">Blog</a></li><li><a href="#">Sobre nosotros</a></li><li><a href="#">Contacto</a></li><li><a href="#">Careers</a></li></ul></div><div className="footer__col"><h4 data-i18n="footer_legal">Legal</h4><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li><li><a href="#">Cookies</a></li><li><a href="#">DPA</a></li></ul></div></div><div className="footer__bottom"><span className="footer__copy" data-i18n="footer_copy">© 2026 Whaid. Hecho con cuidado en LatAm.</span></div></div></footer>
+  );
+}
+
+function CardInner({post}) {
+  const tag = post.tags?.[0] || "Whaid";
   return (
     <>
-{/* NAV */}
-<nav className="nav" aria-label="Principal">
-  <div className="nav__inner">
-    <a href="/" className="nav__logo" aria-label="Whaid">
-      <img src="/assets/whaid-logo-nav.png" alt="Whaid" />
-    </a>
-    <div className="nav__links" id="nav-menu">
-      <a href="/" data-i18n="nav_home">Home</a>
-      <a href="/#keyshots" data-i18n="nav_product">Producto</a>
-      <a href="/#usecases" data-i18n="nav_use_cases">Casos de uso</a>
-      <a href="/blog" aria-current="page" data-i18n="nav_blog">Blog</a>
-    </div>
-    <div className="nav__actions">
-      <button className="chip-btn" id="lang-switch" aria-label="Cambiar idioma">EN</button>
-      <button className="chip-btn" id="theme-switch" aria-label="Cambiar tema">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-      </button>
-      <a href="/#demo" className="btn btn--primary btn--sm"><span data-i18n="nav_cta">Agendar demo</span></a>
-      <button className="menu-toggle" id="menu-toggle" aria-label="Menú" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
-    </div>
-  </div>
-</nav>
-
-{/* BLOG HERO */}
-<header className="blog-hero">
-  <div className="blog-hero__inner">
-    <div>
-      <span className="eyebrow" data-i18n="blog_eyebrow">Journal</span>
-      <h1>
-        <span data-i18n="blog_title_a">Ideas sobre IA, operaciones y </span><span className="accent" data-i18n="blog_title_b">conversación</span><span data-i18n="blog_title_c">.</span>
-      </h1>
-    </div>
-    <p data-i18n="blog_sub">Ensayos, casos de estudio y notas técnicas del equipo de Whaid.</p>
-  </div>
-</header>
-
-{/* Tag filter */}
-<div className="blog-tags" role="tablist" aria-label="Filtrar por categoría">
-  <button className="blog-tag is-active" data-tag="all">Todos</button>
-  <button className="blog-tag" data-tag="producto">Producto</button>
-  <button className="blog-tag" data-tag="ia">IA &amp; LLMs</button>
-  <button className="blog-tag" data-tag="casos">Casos de estudio</button>
-  <button className="blog-tag" data-tag="ingenieria">Ingeniería</button>
-  <button className="blog-tag" data-tag="operaciones">Operaciones</button>
-</div>
-
-{/* FEATURED POST */}
-<section className="featured-post reveal">
-  <a href="/blog/test" className="featured-post__card" style={{color: "inherit", textDecoration: "none"}}>
-    <div>
-      <span className="featured-post__label">
-        <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 17 14 19 22 12 18 5 22 7 14 2 9 9 9"/></svg>
-        <span data-i18n="featured">Destacado</span>
-      </span>
-      <h2 className="featured-post__title">Por qué elegimos WhatsApp como interfaz para datos operativos.</h2>
-      <p className="featured-post__excerpt">La conversación siempre ganó al tablero. Cuando un gerente de feria pregunta "¿cómo vamos?", no quiere un login — quiere una respuesta. Así nos dimos cuenta de que el canal ya existía; solo faltaba el asistente que entendiera los datos.</p>
-      <div className="featured-post__meta">
-        <span>Martín Castellanos</span><span className="dot-sep"></span><span>12 min</span><span className="dot-sep"></span><span>20 MAR 2026</span>
+      <div className="post-card__cover">
+        <span className="post-card__cover-badge">{tag}</span>
+        <ImageWithFallback src={post.cover_image_url} alt={post.title || "Imagen del post"} className="post-card__cover-img" />
+        <div className="post-card__cover-glyph"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6"/></svg></div>
       </div>
-    </div>
-    <div className="featured-post__visual">
-      <div className="featured-post__visual-inner">
-        <svg width="140" height="140" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
-        </svg>
-      </div>
-    </div>
-  </a>
-</section>
+      <div className="post-card__meta"><span>{tag}</span>{post.published_at ? <><span className="dot-sep"/><span>{formatDate(post.published_at)}</span></> : null}</div>
+      <h3 className="post-card__title">{post.title || "Post de Whaid"}</h3>
+      {post.excerpt ? <p className="post-card__excerpt">{post.excerpt}</p> : null}
+    </>
+  );
+}
 
-{/* POST GRID */}
-<section className="posts-section">
-  <div className="container">
-    <div className="posts-grid" id="posts-grid">
+function BlogCard({post}) {
+  const tags = Array.isArray(post.tags) ? post.tags.join(" ").toLowerCase() : "";
 
-      <a href="/blog/test" className="post-card" data-tags="ia ingenieria" style={{color: "inherit", textDecoration: "none"}}>
-        <div className="post-card__cover">
-          <span className="post-card__cover-badge">IA &amp; LLMs</span>
-          <div className="post-card__cover-glyph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6M12 17v6M4.22 4.22l4.24 4.24M15.54 15.54l4.24 4.24M1 12h6M17 12h6M4.22 19.78l4.24-4.24M15.54 8.46l4.24-4.24"/></svg>
-          </div>
-        </div>
-        <div className="post-card__meta"><span>IA</span><span className="dot-sep"></span><span>8 min</span><span className="dot-sep"></span><span>18 MAR</span></div>
-        <h3 className="post-card__title">Cómo mantenemos al LLM honesto sobre datos privados.</h3>
-        <p className="post-card__excerpt">RAG no basta. Un sistema de validación cruzada entre la respuesta, el contexto y los permisos del usuario.</p>
-      </a>
+  // Si Firestore no trae slug, el card se muestra sin enlace para evitar rutas rotas.
+  if (!post.slug) {
+    return <article className="post-card is-disabled" data-tags={tags}><CardInner post={post} /></article>;
+  }
 
-      <a href="/blog/test" className="post-card" data-tags="casos operaciones" style={{color: "inherit", textDecoration: "none"}}>
-        <div className="post-card__cover">
-          <span className="post-card__cover-badge">Caso de estudio</span>
-          <div className="post-card__cover-glyph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-        </div>
-        <div className="post-card__meta"><span>Casos</span><span className="dot-sep"></span><span>6 min</span><span className="dot-sep"></span><span>14 MAR</span></div>
-        <h3 className="post-card__title">ExpoAndina bajó 43% sus tiempos de respuesta en piso de feria.</h3>
-        <p className="post-card__excerpt">Un caso real: cómo el equipo de operaciones dejó de usar radios y planillas, y empezó a escribirle a Whaid.</p>
-      </a>
+  return <a href={`/blog/${post.slug}`} className="post-card" data-tags={tags} style={{color: "inherit", textDecoration: "none"}}><CardInner post={post} /></a>;
+}
 
-      <a href="/blog/test" className="post-card" data-tags="producto" style={{color: "inherit", textDecoration: "none"}}>
-        <div className="post-card__cover">
-          <span className="post-card__cover-badge">Producto</span>
-          <div className="post-card__cover-glyph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-          </div>
-        </div>
-        <div className="post-card__meta"><span>Producto</span><span className="dot-sep"></span><span>5 min</span><span className="dot-sep"></span><span>10 MAR</span></div>
-        <h3 className="post-card__title">Introducing Alertas Proactivas: que Whaid te avise primero.</h3>
-        <p className="post-card__excerpt">Definí un umbral, elegí un canal, seguí con tu día. Whaid se encarga de vigilar.</p>
-      </a>
+export default async function BlogPage() {
+  const posts = await fetchPublishedPosts();
+  const featured = posts.find((post) => post.slug) || posts[0];
+  const gridPosts = featured ? posts.filter((post) => post.id !== featured.id) : posts;
 
-      <a href="/blog/test" className="post-card" data-tags="operaciones" style={{color: "inherit", textDecoration: "none"}}>
-        <div className="post-card__cover">
-          <span className="post-card__cover-badge">Operaciones</span>
-          <div className="post-card__cover-glyph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-          </div>
-        </div>
-        <div className="post-card__meta"><span>Ops</span><span className="dot-sep"></span><span>7 min</span><span className="dot-sep"></span><span>06 MAR</span></div>
-        <h3 className="post-card__title">La diferencia entre un dashboard y una respuesta.</h3>
-        <p className="post-card__excerpt">Un gerente no mira gráficos a las 9pm. Un gerente escribe un mensaje. Así repensamos la información operativa.</p>
-      </a>
+  return (
+    <>
+      <Nav />
+      <header className="blog-hero"><div className="blog-hero__inner"><div><span className="eyebrow" data-i18n="blog_eyebrow">Journal</span><h1><span data-i18n="blog_title_a">Ideas sobre IA, operaciones y </span><span className="accent" data-i18n="blog_title_b">conversación</span><span data-i18n="blog_title_c">.</span></h1></div><p data-i18n="blog_sub">Ensayos, casos de estudio y notas técnicas del equipo de Whaid.</p></div></header>
+      <div className="blog-tags" role="tablist" aria-label="Filtrar por categoría"><button className="blog-tag is-active" data-tag="all">Todos</button><button className="blog-tag" data-tag="producto">Producto</button><button className="blog-tag" data-tag="ia">IA &amp; LLMs</button><button className="blog-tag" data-tag="casos">Casos de estudio</button><button className="blog-tag" data-tag="ingenieria">Ingeniería</button><button className="blog-tag" data-tag="operaciones">Operaciones</button></div>
 
-      <a href="/blog/test" className="post-card" data-tags="ingenieria" style={{color: "inherit", textDecoration: "none"}}>
-        <div className="post-card__cover">
-          <span className="post-card__cover-badge">Ingeniería</span>
-          <div className="post-card__cover-glyph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          </div>
-        </div>
-        <div className="post-card__meta"><span>Eng</span><span className="dot-sep"></span><span>11 min</span><span className="dot-sep"></span><span>02 MAR</span></div>
-        <h3 className="post-card__title">Arquitectura de conectores: de Excel a SAP en la misma pregunta.</h3>
-        <p className="post-card__excerpt">Cómo abstraemos 30+ fuentes de datos detrás de una capa semántica unificada.</p>
-      </a>
+      {featured ? (
+        <section className="featured-post reveal">
+          <a href={featured.slug ? `/blog/${featured.slug}` : undefined} className="featured-post__card" style={{color: "inherit", textDecoration: "none"}}>
+            <div><span className="featured-post__label">Destacado</span><h2 className="featured-post__title">{featured.title || "Post de Whaid"}</h2>{featured.excerpt ? <p className="featured-post__excerpt">{featured.excerpt}</p> : null}<div className="featured-post__meta">{featured.author ? <span>{featured.author}</span> : null}{featured.published_at ? <><span className="dot-sep"/><span>{formatDate(featured.published_at)}</span></> : null}</div></div>
+            <div className="featured-post__visual"><ImageWithFallback src={featured.cover_image_url} alt={featured.title || "Imagen destacada"} className="featured-post__visual-img" /></div>
+          </a>
+        </section>
+      ) : null}
 
-      <a href="/blog/test" className="post-card" data-tags="casos" style={{color: "inherit", textDecoration: "none"}}>
-        <div className="post-card__cover">
-          <span className="post-card__cover-badge">Caso de estudio</span>
-          <div className="post-card__cover-glyph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v8h4"/><path d="M18 9h2a2 2 0 0 1 2 2v11h-4"/></svg>
-          </div>
-        </div>
-        <div className="post-card__meta"><span>Casos</span><span className="dot-sep"></span><span>9 min</span><span className="dot-sep"></span><span>28 FEB</span></div>
-        <h3 className="post-card__title">Parque 93: toda la operación del CC en un solo chat.</h3>
-        <p className="post-card__excerpt">De 11 tableros dispersos a una conversación con respuestas verificadas — sin abandonar los sistemas existentes.</p>
-      </a>
-
-      <a href="/blog/test" className="post-card" data-tags="producto ia" style={{color: "inherit", textDecoration: "none"}}>
-        <div className="post-card__cover">
-          <span className="post-card__cover-badge">Producto</span>
-          <div className="post-card__cover-glyph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-          </div>
-        </div>
-        <div className="post-card__meta"><span>Producto</span><span className="dot-sep"></span><span>4 min</span><span className="dot-sep"></span><span>22 FEB</span></div>
-        <h3 className="post-card__title">Voz sobre WhatsApp: cuando el teclado estorba.</h3>
-        <p className="post-card__excerpt">Pruebas, reflexiones y lo que aprendimos sobre usar notas de voz como interfaz de consulta.</p>
-      </a>
-
-      <a href="/blog/test" className="post-card" data-tags="operaciones casos" style={{color: "inherit", textDecoration: "none"}}>
-        <div className="post-card__cover">
-          <span className="post-card__cover-badge">Universidades</span>
-          <div className="post-card__cover-glyph">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-          </div>
-        </div>
-        <div className="post-card__meta"><span>Ops</span><span className="dot-sep"></span><span>10 min</span><span className="dot-sep"></span><span>14 FEB</span></div>
-        <h3 className="post-card__title">Unifronteras: de tickets a conversaciones en decanaturas.</h3>
-        <p className="post-card__excerpt">Cómo una universidad redujo 3× las consultas de estado — y lo que eso liberó en soporte.</p>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-{/* NEWSLETTER */}
-<section className="newsletter-strip">
-  <div className="newsletter-strip__inner">
-    <span className="eyebrow" style={{color: "var(--c-lime)"}}>Newsletter</span>
-    <h2>Una lectura mensual sobre <span className="accent">conversación &amp; datos</span>.</h2>
-    <p>Ensayos cortos, casos reales y notas técnicas. Sin ruido, sin spam.</p>
-    <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
-      <input type="email" placeholder="tu@email.com" required />
-      <button type="submit" className="btn btn--primary btn--sm">Suscribirme</button>
-    </form>
-  </div>
-</section>
-
-{/* FOOTER */}
-<footer className="footer">
-  <div className="container">
-    <div className="footer__grid">
-      <div>
-        <div className="footer__logo">
-          <img src="/assets/whaid-logo.png" alt="Whaid" />
-        </div>
-        <p className="footer__tag" data-i18n="footer_tagline">El asistente IA que responde por tus activos — desde WhatsApp.</p>
-      </div>
-      <div className="footer__col">
-        <h4 data-i18n="footer_product">Producto</h4>
-        <ul>
-          <li><a href="/#keyshots">Capacidades</a></li>
-          <li><a href="/#usecases">Casos de uso</a></li>
-          <li><a href="#">Integraciones</a></li>
-          <li><a href="#">Seguridad</a></li>
-          <li><a href="#">Pricing</a></li>
-        </ul>
-      </div>
-      <div className="footer__col">
-        <h4 data-i18n="footer_company">Compañía</h4>
-        <ul>
-          <li><a href="/blog">Blog</a></li>
-          <li><a href="#">Sobre nosotros</a></li>
-          <li><a href="#">Contacto</a></li>
-          <li><a href="#">Careers</a></li>
-        </ul>
-      </div>
-      <div className="footer__col">
-        <h4 data-i18n="footer_legal">Legal</h4>
-        <ul>
-          <li><a href="#">Privacidad</a></li>
-          <li><a href="#">Términos</a></li>
-          <li><a href="#">Cookies</a></li>
-          <li><a href="#">DPA</a></li>
-        </ul>
-      </div>
-    </div>
-    <div className="footer__bottom">
-      <span className="footer__copy" data-i18n="footer_copy">© 2026 Whaid. Hecho con cuidado en LatAm.</span>
-      <div className="footer__socials">
-        <a className="footer__social" href="#" aria-label="Twitter / X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-        <a className="footer__social" href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14M8.339 18.339v-8.68H5.666v8.68h2.673zM7.003 8.476c.858 0 1.554-.71 1.554-1.568a1.554 1.554 0 1 0-3.108 0c0 .858.696 1.568 1.554 1.568zm11.335 9.863v-4.757c0-2.317-.5-4.098-3.208-4.098-1.3 0-2.172.713-2.528 1.389h-.036v-1.174H9.998v8.64h2.673v-4.277c0-1.125.214-2.214 1.609-2.214 1.374 0 1.392 1.286 1.392 2.286v4.205h2.666z"/></svg></a>
-        <a className="footer__social" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg></a>
-      </div>
-    </div>
-  </div>
-</footer>
-      <Script id="blog-tag-filter" strategy="afterInteractive">{`
-        document.querySelectorAll('.blog-tag').forEach(btn => {
-          btn.addEventListener('click', () => {
-            document.querySelectorAll('.blog-tag').forEach(b => b.classList.remove('is-active'));
-            btn.classList.add('is-active');
-            const tag = btn.dataset.tag;
-            document.querySelectorAll('#posts-grid .post-card').forEach(card => {
-              const tags = (card.dataset.tags || '').split(' ');
-              const show = tag === 'all' || tags.includes(tag);
-              card.style.display = show ? '' : 'none';
-            });
-          });
-        });
-      `}</Script>
+      <section className="posts-section"><div className="container"><div className="posts-grid" id="posts-grid">{gridPosts.map((post) => <BlogCard post={post} key={post.id} />)}</div></div></section>
+      <Footer />
     </>
   );
 }
