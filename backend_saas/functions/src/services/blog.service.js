@@ -59,23 +59,52 @@ const publishedPostsQuery = () => db
     .collection(BLOG_POSTS_COLLECTION)
     .where("status", "==", PUBLISHED_STATUS);
 
-export const getPublishedPosts = async () => {
-  const snapshot = await publishedPostsQuery()
-      .orderBy("published_at", "desc")
-      .get();
+const sortByPublishedDateDesc = (left, right) => {
+  const leftDate = left.published_at ?
+    new Date(left.published_at).getTime() :
+    0;
+  const rightDate = right.published_at ?
+    new Date(right.published_at).getTime() :
+    0;
 
-  return snapshot.docs.map(mapPostListItem);
+  return rightDate - leftDate;
+};
+
+export const getPublishedPosts = async () => {
+  // No usamos orderBy("published_at") porque Firestore excluye documentos sin
+  // ese campo. `published_at` es opcional, así que ordenamos en memoria y los
+  // posts sin fecha quedan al final sin desaparecer del listado.
+  const snapshot = await publishedPostsQuery().get();
+
+  return snapshot.docs.map(mapPostListItem).sort(sortByPublishedDateDesc);
 };
 
 export const getPublishedPostBySlug = async (slug) => {
-  const snapshot = await publishedPostsQuery()
-      .where("slug", "==", slug)
-      .limit(1)
-      .get();
+  const safeSlug = safeString(slug);
 
-  if (snapshot.empty) {
+  if (!safeSlug) {
     return null;
   }
 
-  return mapPostDetail(snapshot.docs[0]);
+  const snapshot = await publishedPostsQuery()
+      .where("slug", "==", safeSlug)
+      .limit(1)
+      .get();
+
+  if (!snapshot.empty) {
+    return mapPostDetail(snapshot.docs[0]);
+  }
+
+  // Fallback controlado: si un post publicado aún no tiene `slug`, el frontend
+  // enlaza usando `id`. Esto mantiene navegable una única entrada real sin
+  // cambiar el modelo ni inventar slugs en la API.
+  const doc = await db.collection(BLOG_POSTS_COLLECTION).doc(safeSlug).get();
+
+  const data = doc.data() || {};
+
+  if (!doc.exists || data.status !== PUBLISHED_STATUS) {
+    return null;
+  }
+
+  return mapPostDetail(doc);
 };

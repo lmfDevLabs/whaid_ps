@@ -44,15 +44,23 @@ function CardInner({post}) {
   );
 }
 
+const getPostHref = (post) => {
+  const pathKey = post?.slug || post?.id;
+
+  return pathKey ? `/blog/${encodeURIComponent(pathKey)}` : "";
+};
+
 function BlogCard({post}) {
   const tags = Array.isArray(post.tags) ? post.tags.join(" ").toLowerCase() : "";
+  const href = getPostHref(post);
 
-  // Si Firestore no trae slug, el card se muestra sin enlace para evitar rutas rotas.
-  if (!post.slug) {
+  // Si Firestore no trae slug usamos el id del documento como fallback de ruta;
+  // solo se desactiva el card si tampoco existe id en la respuesta.
+  if (!href) {
     return <article className="post-card is-disabled" data-tags={tags}><CardInner post={post} /></article>;
   }
 
-  return <a href={`/blog/${post.slug}`} className="post-card" data-tags={tags} style={{color: "inherit", textDecoration: "none"}}><CardInner post={post} /></a>;
+  return <a href={href} className="post-card" data-tags={tags} style={{color: "inherit", textDecoration: "none"}}><CardInner post={post} /></a>;
 }
 
 export default async function BlogPage() {
@@ -68,7 +76,7 @@ export default async function BlogPage() {
 
       {featured ? (
         <section className="featured-post reveal">
-          <a href={featured.slug ? `/blog/${featured.slug}` : undefined} className="featured-post__card" style={{color: "inherit", textDecoration: "none"}}>
+          <a href={getPostHref(featured)} className="featured-post__card" style={{color: "inherit", textDecoration: "none"}}>
             <div><span className="featured-post__label">Destacado</span><h2 className="featured-post__title">{featured.title || "Post de Whaid"}</h2>{featured.excerpt ? <p className="featured-post__excerpt">{featured.excerpt}</p> : null}<div className="featured-post__meta">{featured.author ? <span>{featured.author}</span> : null}{featured.published_at ? <><span className="dot-sep"/><span>{formatDate(featured.published_at)}</span></> : null}</div></div>
             <div className="featured-post__visual"><ImageWithFallback src={featured.cover_image_url} alt={featured.title || "Imagen destacada"} className="featured-post__visual-img" /></div>
           </a>
