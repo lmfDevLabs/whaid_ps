@@ -10,26 +10,32 @@ const initialsFromName = (name) => {
     .join("") || "W";
 };
 
+const cleanText = (value) => (typeof value === "string" ? value.trim() : "");
+
 export default function PostAuthor({author, avatar_author, role_author}) {
-  if (!author && !avatar_author && !role_author) {
+  const authorName = cleanText(author);
+  const authorRole = cleanText(role_author);
+  const avatarUrl = cleanText(avatar_author);
+
+  if (!authorName && !avatarUrl && !authorRole) {
     return null;
   }
 
   return (
     <div className="post-author">
-      {avatar_author ? (
+      {avatarUrl ? (
         <ImageWithFallback
-          src={avatar_author}
-          alt={author ? `Avatar de ${author}` : "Avatar del autor"}
+          src={avatarUrl}
+          alt={authorName ? `Avatar de ${authorName}` : "Avatar del autor"}
           className="post-author__avatar-img"
           fallbackClassName="post-author__avatar"
         />
       ) : (
-        <div className="post-author__avatar">{initialsFromName(author)}</div>
+        <div className="post-author__avatar">{initialsFromName(authorName)}</div>
       )}
       <div>
-        {author ? <div className="post-author__name">{author}</div> : null}
-        {role_author ? <div className="post-author__role">{role_author}</div> : null}
+        {authorName ? <div className="post-author__name">{authorName}</div> : null}
+        {authorRole ? <div className="post-author__role">{authorRole}</div> : null}
       </div>
     </div>
   );
