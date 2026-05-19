@@ -233,6 +233,67 @@ const DICT = {
   },
 };
 
+const QA_STRIP = {
+  es: {
+    qaStrip: {
+      label: 'Imagina responderle a tus visitantes preguntas como:',
+      tabs: [
+        { id: 'events', label: 'Ferias y eventos', items: [
+          { question: '¿Dónde encuentro proveedores de paneles solares?', answer: 'Whaid puede mostrarte compañías relacionadas con energía solar, su ubicación dentro del evento y una breve descripción de lo que ofrecen.' },
+          { question: '¿A qué hora empieza la charla principal?', answer: 'La charla principal comienza a las 4:00 p. m. en el auditorio central. También puedo indicarte cómo llegar desde tu ubicación actual.' },
+          { question: '¿Qué empresas ofrecen soluciones para restaurantes?', answer: 'Encontré varias compañías con servicios para restaurantes, incluyendo marketing, software de punto de venta y mobiliario comercial.' },
+          { question: '¿Dónde está el stand de una marca específica?', answer: 'Puedo ayudarte a ubicar el stand, mostrarte el pabellón correspondiente y darte señales para llegar dentro del recinto.' },
+          { question: '¿Qué actividades hay hoy en el evento?', answer: 'Puedo listar las actividades del día, sus horarios, espacios y los expositores relacionados.' }
+        ]},
+        { id: 'malls', label: 'Centros comerciales', items: [
+          { question: '¿Dónde queda la plazoleta de comidas?', answer: 'La plazoleta de comidas está en el segundo nivel. Puedo indicarte la ruta más cercana y sugerirte opciones según lo que quieras comer.' },
+          { question: '¿Qué promociones hay hoy en ropa?', answer: 'Encontré promociones activas en varias tiendas de moda. Puedo mostrarte cuáles están vigentes y en qué locales aplican.' },
+          { question: '¿Dónde puedo comprar un regalo para el Día de la Madre?', answer: 'Puedo sugerirte tiendas de accesorios, moda, belleza o tecnología según tu presupuesto y el tipo de regalo que buscas.' },
+          { question: '¿Hay parqueadero disponible?', answer: 'Puedo indicarte zonas de parqueadero, accesos principales y la información disponible sobre disponibilidad o tarifas.' },
+          { question: '¿Qué tiendas venden productos deportivos?', answer: 'Encontré tiendas deportivas dentro del centro comercial y puedo mostrarte su ubicación, horarios y categorías principales.' }
+        ]},
+        { id: 'universities', label: 'Universidades', items: [
+          { question: '¿Dónde queda el laboratorio de prototipado?', answer: 'Puedo indicarte el edificio, piso y ruta aproximada hacia el laboratorio, además de los horarios o requisitos disponibles.' },
+          { question: '¿Qué eventos académicos hay esta semana?', answer: 'Puedo mostrarte eventos, charlas, conferencias y actividades programadas dentro del campus.' },
+          { question: '¿Dónde puedo pedir información sobre admisiones?', answer: 'Puedo ubicarte la oficina correspondiente, horarios de atención y canales oficiales de contacto.' },
+          { question: '¿Qué espacios puedo reservar para estudiar?', answer: 'Puedo ayudarte a encontrar salas, bibliotecas o espacios colaborativos disponibles según la información del campus.' },
+          { question: '¿Quién puede orientarme sobre un programa académico?', answer: 'Puedo mostrarte dependencias, contactos o áreas relacionadas con el programa que estás buscando.' }
+        ]}
+      ]
+    }
+  },
+  en: {
+    qaStrip: {
+      label: 'Imagine answering your visitors questions like:',
+      tabs: [
+        { id: 'events', label: 'Fairs and events', items: [
+          { question: 'Where can I find solar panel providers?', answer: 'Whaid can show companies related to solar energy, their location inside the event, and a short description of what they offer.' },
+          { question: 'What time does the main talk start?', answer: 'The main talk starts at 4:00 p.m. in the central auditorium. I can also guide you there from your current location.' },
+          { question: 'Which companies offer solutions for restaurants?', answer: 'I found several companies with services for restaurants, including marketing, point-of-sale software, and commercial furniture.' },
+          { question: 'Where is a specific brand’s booth?', answer: 'I can help you locate the booth, show the corresponding pavilion, and give you directions inside the venue.' },
+          { question: 'What activities are happening today?', answer: 'I can list today’s activities, schedules, spaces, and related exhibitors.' }
+        ]},
+        { id: 'malls', label: 'Shopping centers', items: [
+          { question: 'Where is the food court?', answer: 'The food court is on the second level. I can show you the closest route and suggest options based on what you want to eat.' },
+          { question: 'What clothing promotions are available today?', answer: 'I found active promotions in several fashion stores. I can show you which ones are available and where they apply.' },
+          { question: 'Where can I buy a Mother’s Day gift?', answer: 'I can suggest accessory, fashion, beauty, or technology stores based on your budget and the type of gift you are looking for.' },
+          { question: 'Is parking available?', answer: 'I can show you parking areas, main access points, and available information about rates or availability.' },
+          { question: 'Which stores sell sports products?', answer: 'I found sports stores inside the shopping center and can show their location, opening hours, and main categories.' }
+        ]},
+        { id: 'universities', label: 'Universities', items: [
+          { question: 'Where is the prototyping lab?', answer: 'I can show you the building, floor, and approximate route to the lab, along with available hours or access requirements.' },
+          { question: 'What academic events are happening this week?', answer: 'I can show events, talks, conferences, and activities scheduled across campus.' },
+          { question: 'Where can I ask for admissions information?', answer: 'I can locate the right office, opening hours, and official contact channels.' },
+          { question: 'What spaces can I reserve for studying?', answer: 'I can help you find study rooms, libraries, or collaborative spaces based on the campus information available.' },
+          { question: 'Who can guide me about an academic program?', answer: 'I can show departments, contacts, or areas related to the program you are looking for.' }
+        ]}
+      ]
+    }
+  }
+};
+
+window.WHAID_SITE = QA_STRIP;
+
 function getLang() {
   return localStorage.getItem('whaid:lang') || 'es';
 }
