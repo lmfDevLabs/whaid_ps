@@ -5,25 +5,45 @@
 */
 
 const HERO_SCRIPT_ES = [
-  { t: 'out', text: 'Whaid, ¿cómo va el <b>piso 2</b> de la feria?', time: '09:14' },
+  { 
+    t: 'out', 
+    text: 'Whaid, estoy en <b>ExpoAndina</b> y busco marcas de ropa sostenible.', 
+    time: '09:14' 
+  },
   { t: 'typing', ms: 900 },
-  { t: 'in', text: '<b>Piso 2 · ExpoAndina</b> — 86 stands activos, 2 con incidencias abiertas.<br><br><span class="pill">A-14 · sin energía</span><span class="pill pill--bad">B-04 · offline</span>', time: '09:14' },
-  { t: 'out', text: '¿Quién atiende B-04?', time: '09:14' },
+  { 
+    t: 'in', 
+    text: 'Encontré varias opciones relacionadas con <b>moda sostenible</b>, textiles reciclados y producción responsable dentro de ExpoAndina.<br><br><span class="pill">EcoTela · Pabellón 2</span><span class="pill">VerdeWear · Stand B-14</span><span class="pill">Andes Fibers · Zona Diseño</span>', 
+    time: '09:14' 
+  },
+  { 
+    t: 'out', 
+    text: '¿Cuál está más cerca de la entrada principal?', 
+    time: '09:14' 
+  },
   { t: 'typing', ms: 1100 },
-  { t: 'in', text: 'Asignado a <b>Laura P.</b> (operación piso). ETA: 6 min.', time: '09:15' },
+  { 
+    t: 'in', 
+    text: 'La opción más cercana es <b>EcoTela</b>, ubicada en el <b>Pabellón 2</b>, a unos pocos minutos caminando desde la entrada principal.', 
+    time: '09:15' 
+  },
   { t: 'typing', ms: 800 },
-  { t: 'in', text: '¿Quieres ver el detalle del piso? Te dejo la vista enriquecida 👇', time: '09:15' },
+  { 
+    t: 'in', 
+    text: 'También encontré una promoción activa y una charla relacionada con materiales sostenibles. Te dejo una vista visual con las opciones 👇', 
+    time: '09:15' 
+  },
   {
     t: 'linkcard',
     time: '09:15',
-    title: 'Piso 2 · ExpoAndina — vista en vivo',
+    title: 'Opciones sostenibles en ExpoAndina',
     domain: 'whaid.app',
-    url: 'whaid.app/expoandina/piso-2',
-    desc: 'Stands, incidencias y ETA en tiempo real. Acceso seguro con tu sesión.',
+    url: 'whaid.app/expoandina/moda-sostenible',
+    desc: 'Marcas, stands, promociones y actividades relacionadas con moda sostenible dentro del evento.',
     chips: [
-      { k: 'Stands', v: '86' },
-      { k: 'Alertas', v: '2' },
-      { k: 'ETA', v: '6m' }
+      { k: 'Marcas', v: '3' },
+      { k: 'Promos', v: '1' },
+      { k: 'Charla', v: 'Hoy' }
     ],
   },
   { t: 'panel-open', ms: 600 },
@@ -32,25 +52,45 @@ const HERO_SCRIPT_ES = [
 ];
 
 const HERO_SCRIPT_EN = [
-  { t: 'out', text: 'Whaid, how\u2019s <b>floor 2</b> looking?', time: '09:14' },
+  { 
+    t: 'out', 
+    text: 'Whaid, I’m at <b>ExpoAndina</b> and I’m looking for sustainable fashion brands.', 
+    time: '09:14' 
+  },
   { t: 'typing', ms: 900 },
-  { t: 'in', text: '<b>Floor 2 · ExpoAndina</b> — 86 booths active, 2 with open incidents.<br><br><span class="pill">A-14 · no power</span><span class="pill pill--bad">B-04 · offline</span>', time: '09:14' },
-  { t: 'out', text: 'Who\u2019s on B-04?', time: '09:14' },
+  { 
+    t: 'in', 
+    text: 'I found several options related to <b>sustainable fashion</b>, recycled textiles and responsible production inside ExpoAndina.<br><br><span class="pill">EcoTela · Pavilion 2</span><span class="pill">VerdeWear · Booth B-14</span><span class="pill">Andes Fibers · Design Zone</span>', 
+    time: '09:14' 
+  },
+  { 
+    t: 'out', 
+    text: 'Which one is closest to the main entrance?', 
+    time: '09:14' 
+  },
   { t: 'typing', ms: 1100 },
-  { t: 'in', text: 'Assigned to <b>Laura P.</b> (floor ops). ETA: 6 min.', time: '09:15' },
+  { 
+    t: 'in', 
+    text: 'The closest option is <b>EcoTela</b>, located in <b>Pavilion 2</b>, just a short walk from the main entrance.', 
+    time: '09:15' 
+  },
   { t: 'typing', ms: 800 },
-  { t: 'in', text: 'Want the full floor view? Here\u2019s the enriched link 👇', time: '09:15' },
+  { 
+    t: 'in', 
+    text: 'I also found an active promotion and a talk related to sustainable materials. Here’s a visual view with the options 👇', 
+    time: '09:15' 
+  },
   {
     t: 'linkcard',
     time: '09:15',
-    title: 'Floor 2 · ExpoAndina — live view',
+    title: 'Sustainable options at ExpoAndina',
     domain: 'whaid.app',
-    url: 'whaid.app/expoandina/floor-2',
-    desc: 'Booths, incidents and ETA in real time. Secure access with your session.',
+    url: 'whaid.app/expoandina/sustainable-fashion',
+    desc: 'Brands, booths, promotions and activities related to sustainable fashion inside the event.',
     chips: [
-      { k: 'Booths', v: '86' },
-      { k: 'Alerts', v: '2' },
-      { k: 'ETA', v: '6m' }
+      { k: 'Brands', v: '3' },
+      { k: 'Promos', v: '1' },
+      { k: 'Talk', v: 'Today' }
     ],
   },
   { t: 'panel-open', ms: 600 },
@@ -59,27 +99,83 @@ const HERO_SCRIPT_EN = [
 ];
 
 const TAKELOOK_SCRIPT_ES = [
-  { t: 'out', text: 'Hola Whaid 👋 necesito saber cuántas entradas vendimos hoy en la feria.', time: '14:28' },
+  { 
+    t: 'out', 
+    text: 'Hola Whaid 👋 estoy en la feria y quiero ver qué actividades hay para hacer ahora.', 
+    time: '14:28' 
+  },
   { t: 'typing', ms: 800 },
-  { t: 'in', text: '¡Hola Andrés! Tengo las cifras de <b>ExpoAndina</b> al corte de hoy 14:28.', time: '14:28' },
-  { t: 'in', text: '<b>Ventas del día</b><br>• Entradas: <b>12.438</b><br>• Ingresos: <b>$184.2M COP</b><br>• Ticket promedio: <b>$14.800</b><br><br><span class="pill">+18% vs ayer</span>', time: '14:28' },
-  { t: 'out', text: '¿Y el <b>stand B-04</b> por qué aparece offline?', time: '14:29' },
+  { 
+    t: 'in', 
+    text: '¡Hola! Para este momento en <b>ExpoAndina</b> encontré actividades abiertas al público y algunas recomendadas según lo que está disponible hoy.', 
+    time: '14:28' 
+  },
+  { 
+    t: 'in', 
+    text: '<b>Actividades disponibles ahora</b><br>• Charla: <b>Materiales inteligentes</b> · Auditorio 1<br>• Demostración: <b>Textiles reciclados</b> · Zona Diseño<br>• Recorrido: <b>Nuevas marcas emergentes</b> · Pabellón 3<br><br><span class="pill">3 opciones activas</span>', 
+    time: '14:28' 
+  },
+  { 
+    t: 'out', 
+    text: 'Me interesa la de <b>textiles reciclados</b>. ¿Dónde queda?', 
+    time: '14:29' 
+  },
   { t: 'typing', ms: 1100 },
-  { t: 'in', text: 'Revisé el POS de <b>B-04</b>: última transacción 11:42. El operador reportó corte eléctrico en el panel de esa zona.<br><br><span class="pill pill--warn">Ticket #4821 abierto hace 18min</span>', time: '14:29' },
-  { t: 'out', text: 'Perfecto. Avísame cuando vuelva.', time: '14:30' },
-  { t: 'in', text: 'Listo, te aviso en cuanto B-04 registre actividad. ✅', time: '14:30' },
+  { 
+    t: 'in', 
+    text: 'La demostración de <b>textiles reciclados</b> está en la <b>Zona Diseño</b>, cerca del Pabellón 2. Según la información del evento, estará activa hasta las 15:30.', 
+    time: '14:29' 
+  },
+  { 
+    t: 'out', 
+    text: '¿Hay alguna marca relacionada que pueda visitar después?', 
+    time: '14:30' 
+  },
+  { 
+    t: 'in', 
+    text: 'Sí. Puedes visitar <b>EcoTela</b> y <b>Andes Fibers</b>. Ambas aparecen relacionadas con materiales sostenibles y producción textil responsable. ✅', 
+    time: '14:30' 
+  },
 ];
 
 const TAKELOOK_SCRIPT_EN = [
-  { t: 'out', text: 'Hey Whaid 👋 how many tickets did we sell today at the fair?', time: '14:28' },
+  { 
+    t: 'out', 
+    text: 'Hey Whaid 👋 I’m at the fair and I want to see what activities are happening now.', 
+    time: '14:28' 
+  },
   { t: 'typing', ms: 800 },
-  { t: 'in', text: 'Hi Andrés! Here are <b>ExpoAndina</b> numbers as of 14:28.', time: '14:28' },
-  { t: 'in', text: '<b>Today\u2019s sales</b><br>• Tickets: <b>12,438</b><br>• Revenue: <b>$184.2M COP</b><br>• Avg ticket: <b>$14,800</b><br><br><span class="pill">+18% vs yesterday</span>', time: '14:28' },
-  { t: 'out', text: 'And why is <b>booth B-04</b> showing offline?', time: '14:29' },
+  { 
+    t: 'in', 
+    text: 'Hi! For this moment at <b>ExpoAndina</b>, I found public activities and a few recommendations based on what is available today.', 
+    time: '14:28' 
+  },
+  { 
+    t: 'in', 
+    text: '<b>Activities available now</b><br>• Talk: <b>Smart materials</b> · Auditorium 1<br>• Demo: <b>Recycled textiles</b> · Design Zone<br>• Tour: <b>Emerging brands</b> · Pavilion 3<br><br><span class="pill">3 active options</span>', 
+    time: '14:28' 
+  },
+  { 
+    t: 'out', 
+    text: 'I’m interested in <b>recycled textiles</b>. Where is it?', 
+    time: '14:29' 
+  },
   { t: 'typing', ms: 1100 },
-  { t: 'in', text: 'Checked the B-04 POS: last tx at 11:42. Operator reported a power outage on that zone panel.<br><br><span class="pill pill--warn">Ticket #4821 open for 18min</span>', time: '14:29' },
-  { t: 'out', text: 'Great. Ping me when it\u2019s back.', time: '14:30' },
-  { t: 'in', text: 'Got it, I\u2019ll message you as soon as B-04 records activity. ✅', time: '14:30' },
+  { 
+    t: 'in', 
+    text: 'The <b>recycled textiles</b> demo is in the <b>Design Zone</b>, near Pavilion 2. According to the event information, it will be active until 3:30 PM.', 
+    time: '14:29' 
+  },
+  { 
+    t: 'out', 
+    text: 'Are there any related brands I can visit after that?', 
+    time: '14:30' 
+  },
+  { 
+    t: 'in', 
+    text: 'Yes. You can visit <b>EcoTela</b> and <b>Andes Fibers</b>. Both are related to sustainable materials and responsible textile production. ✅', 
+    time: '14:30' 
+  },
 ];
 
 function appendMsg(body, m) {
