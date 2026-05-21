@@ -116,10 +116,7 @@ export default function HomePage() {
               <div className="wa-header">
                 <span className="wa-header__back"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><polyline points="15 18 9 12 15 6"/></svg></span>
                 <span className="wa-header__avatar">
-                  <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M22 4C12 10 6 20 6 30c0 6 3 10 8 10 1 0 2 0 3-1-1-3-1-6 0-10 2-8 8-14 14-18C28 9 25 6 22 4z" fill="#bdff00"/>
-                    <path d="M22 4c2 4 3 9 2 15-2 10-9 18-17 21 2 0 3 0 5-1 10-3 19-13 21-25 1-4 0-8-1-10H22z" fill="#18a758"/>
-                  </svg>
+                  <img src="/assets/whaid-mark.svg" alt="Whaid" />
                 </span>
                 <div className="wa-header__info">
                   <p className="wa-header__name">

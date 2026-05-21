@@ -208,7 +208,12 @@
   flex-shrink: 0;
   box-shadow: inset 0 0 0 2px rgba(189,255,0,0.25);
 }
-.wa-header__avatar svg { width: 22px; height: 22px; }
+.wa-header__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 .wa-header__info { flex: 1; min-width: 0; }
 .wa-header__name {
   font-size: 14px; font-weight: 600;
