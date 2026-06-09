@@ -2,6 +2,60 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+const OTHER_POSSIBILITIES_MEDIA = {
+  realEstate: {
+    youtubeId: "REAL_ESTATE_YOUTUBE_ID",
+    titleKey: "other_possibilities_real_estate_video_title",
+  },
+  inventory: {
+    youtubeId: "LOCATED_INVENTORY_YOUTUBE_ID",
+    titleKey: "other_possibilities_inventory_video_title",
+  },
+};
+
+function getYouTubeEmbedUrl(videoSource) {
+  if (!videoSource) return "";
+
+  try {
+    const url = new URL(videoSource);
+    const host = url.hostname.replace(/^www\./, "");
+
+    if (host === "youtu.be") {
+      return `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
+    }
+
+    if (host.endsWith("youtube.com")) {
+      if (url.pathname.startsWith("/embed/")) return url.toString();
+      const videoId = url.searchParams.get("v");
+      if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+    }
+  } catch {
+    // Treat non-URL values as YouTube IDs.
+  }
+
+  return `https://www.youtube.com/embed/${encodeURIComponent(videoSource)}`;
+}
+
+function YouTubeEmbed({ videoId, videoUrl, titleKey }) {
+  const embedUrl = getYouTubeEmbedUrl(videoUrl || videoId);
+
+  if (!embedUrl) return null;
+
+  return (
+    <div className="other-possibility-card__video">
+      <iframe
+        src={embedUrl}
+        title=""
+        data-i18n-title={titleKey}
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerPolicy="strict-origin-when-cross-origin"
+        allowFullScreen
+      ></iframe>
+    </div>
+  );
+}
+
 function OtherPossibilitiesBlock() {
   return (
     <section className="section section--other-possibilities" id="other-possibilities" aria-labelledby="other-possibilities-title">
@@ -9,7 +63,6 @@ function OtherPossibilitiesBlock() {
         <div className="other-possibilities reveal">
           <div className="other-possibilities__head">
             <h2 id="other-possibilities-title" data-i18n="other_possibilities_title"></h2>
-            <p className="other-possibilities__subtitle" data-i18n="other_possibilities_subtitle"></p>
             <p className="other-possibilities__intro" data-i18n="other_possibilities_intro"></p>
           </div>
 
@@ -18,6 +71,7 @@ function OtherPossibilitiesBlock() {
               <div className="other-possibility-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01"/><path d="M15 10h.01"/></svg>
               </div>
+              <YouTubeEmbed {...OTHER_POSSIBILITIES_MEDIA.realEstate} />
               <h3 data-i18n="other_possibilities_real_estate_title"></h3>
               <p data-i18n="other_possibilities_real_estate_description"></p>
               <ul className="other-possibility-card__prompts">
@@ -31,6 +85,7 @@ function OtherPossibilitiesBlock() {
               <div className="other-possibility-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg>
               </div>
+              <YouTubeEmbed {...OTHER_POSSIBILITIES_MEDIA.inventory} />
               <h3 data-i18n="other_possibilities_inventory_title"></h3>
               <p data-i18n="other_possibilities_inventory_description"></p>
               <ul className="other-possibility-card__prompts">
@@ -39,14 +94,6 @@ function OtherPossibilitiesBlock() {
                 <li data-i18n="other_possibilities_inventory_prompt_3"></li>
               </ul>
             </article>
-          </div>
-
-          <div className="other-possibilities__closing">
-            <p data-i18n="other_possibilities_closing"></p>
-            <div className="other-possibilities__cta">
-              <span data-i18n="other_possibilities_cta"></span>
-              <a href="#demo" className="btn btn--primary btn--sm"><span data-i18n="other_possibilities_button"></span></a>
-            </div>
           </div>
         </div>
       </div>

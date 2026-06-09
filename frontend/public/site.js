@@ -55,14 +55,16 @@ const DICT = {
 
     other_possibilities_title: 'Otras posibilidades con Whaid',
     other_possibilities_subtitle: 'El mismo modelo conversacional puede adaptarse a escenarios donde la información no solo está en un lugar, sino también en sus activos, propiedades, productos y ubicaciones internas.',
-    other_possibilities_intro: 'Whaid puede convertirse en una capa de consulta para negocios que necesitan hacer visible lo que tienen disponible, dónde está y cómo puede ser encontrado por una persona en el momento preciso.',
+    other_possibilities_intro: 'El mismo modelo conversacional puede adaptarse a escenarios donde la información no solo está en un lugar, sino también en sus activos, propiedades, productos y ubicaciones internas. Whaid puede convertirse en una capa de consulta para negocios que necesitan hacer visible lo que tienen disponible, dónde está y cómo puede ser encontrado por una persona en el momento preciso.',
     other_possibilities_real_estate_title: 'Inmobiliarias',
     other_possibilities_real_estate_description: 'Una inmobiliaria podría permitir que sus visitantes pregunten por propiedades disponibles según ubicación, presupuesto, área, número de habitaciones, tipo de inmueble o disponibilidad comercial.',
+    other_possibilities_real_estate_video_title: 'Video sobre posibilidades de Whaid para inmobiliarias',
     other_possibilities_real_estate_prompt_1: '¿Qué apartamentos disponibles hay cerca de Chapinero?',
     other_possibilities_real_estate_prompt_2: 'Busco una oficina pequeña con parqueadero.',
     other_possibilities_real_estate_prompt_3: '¿Qué propiedades tienen terraza y más de dos habitaciones?',
     other_possibilities_inventory_title: 'Inventarios ubicados',
     other_possibilities_inventory_description: 'Whaid también puede ayudar a consultar inventarios que existen físicamente en un lugar: productos, referencias, unidades, ubicaciones internas, disponibilidad o características relevantes para encontrarlos mejor.',
+    other_possibilities_inventory_video_title: 'Video sobre posibilidades de Whaid para inventarios ubicados',
     other_possibilities_inventory_prompt_1: '¿Dónde está la referencia PZP-5?',
     other_possibilities_inventory_prompt_2: '¿Hay unidades disponibles de este producto?',
     other_possibilities_inventory_prompt_3: '¿Qué productos similares están en esta zona?',
@@ -186,14 +188,16 @@ const DICT = {
 
     other_possibilities_title: 'Other possibilities with Whaid',
     other_possibilities_subtitle: 'The same conversational model can adapt to scenarios where information is not only tied to a place, but also to its assets, properties, products and internal locations.',
-    other_possibilities_intro: 'Whaid can become a query layer for businesses that need to make visible what they have available, where it is, and how a person can find it at the right moment.',
+    other_possibilities_intro: 'The same conversational model can adapt to scenarios where information is not only tied to a place, but also to its assets, properties, products and internal locations. Whaid can become a query layer for businesses that need to make visible what they have available, where it is, and how a person can find it at the right moment.',
     other_possibilities_real_estate_title: 'Real estate',
     other_possibilities_real_estate_description: 'A real estate business could allow visitors to ask about available properties by location, budget, area, number of rooms, property type or commercial availability.',
+    other_possibilities_real_estate_video_title: 'Video about Whaid possibilities for real estate',
     other_possibilities_real_estate_prompt_1: 'Which available apartments are near Chapinero?',
     other_possibilities_real_estate_prompt_2: 'I’m looking for a small office with parking.',
     other_possibilities_real_estate_prompt_3: 'Which properties have a terrace and more than two bedrooms?',
     other_possibilities_inventory_title: 'Located inventories',
     other_possibilities_inventory_description: 'Whaid can also help query inventories that physically exist in a place: products, references, units, internal locations, availability or relevant attributes that make them easier to find.',
+    other_possibilities_inventory_video_title: 'Video about Whaid possibilities for located inventories',
     other_possibilities_inventory_prompt_1: 'Where is reference PZP-5?',
     other_possibilities_inventory_prompt_2: 'Are there available units of this product?',
     other_possibilities_inventory_prompt_3: 'Which similar products are in this area?',
@@ -346,6 +350,9 @@ function applyI18n() {
   });
   document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
     el.setAttribute('placeholder', t(el.getAttribute('data-i18n-placeholder')));
+  });
+  document.querySelectorAll('[data-i18n-title]').forEach(el => {
+    el.setAttribute('title', t(el.getAttribute('data-i18n-title')));
   });
   // Update lang-switch button label
   const ls = document.getElementById('lang-switch');
