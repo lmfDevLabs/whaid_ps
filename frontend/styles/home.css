@@ -1652,6 +1652,35 @@
   height: 100%;
   border: 0;
 }
+.other-possibility-card__video-fallback {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  color: var(--c-white);
+  background: rgba(13,9,16,0.78);
+  border: 1px solid rgba(255,255,255,0.24);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.24);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  text-decoration: none;
+  backdrop-filter: blur(10px);
+  transition: transform var(--transition), background var(--transition), border-color var(--transition);
+}
+.other-possibility-card__video-fallback:hover,
+.other-possibility-card__video-fallback:focus-visible {
+  transform: translateY(-2px);
+  background: rgba(24,167,88,0.92);
+  border-color: rgba(189,255,0,0.52);
+  outline: none;
+}
 .other-possibility-card h3 {
   font-family: var(--font-display);
   font-weight: 400;
