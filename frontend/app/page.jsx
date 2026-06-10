@@ -4,16 +4,16 @@ import { useEffect, useMemo, useState } from "react";
 
 const OTHER_POSSIBILITIES_MEDIA = {
   realEstate: {
-    youtubeId: "REAL_ESTATE_YOUTUBE_ID",
+    youtubeId: "_gQMjWyR1eQ",
     titleKey: "other_possibilities_real_estate_video_title",
   },
   inventory: {
-    youtubeId: "LOCATED_INVENTORY_YOUTUBE_ID",
+    youtubeId: "_gQMjWyR1eQ",
     titleKey: "other_possibilities_inventory_video_title",
   },
 };
 
-function getYouTubeEmbedUrl(videoSource) {
+function getYouTubeVideoId(videoSource) {
   if (!videoSource) return "";
 
   try {
@@ -21,23 +21,63 @@ function getYouTubeEmbedUrl(videoSource) {
     const host = url.hostname.replace(/^www\./, "");
 
     if (host === "youtu.be") {
-      return `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
+      return url.pathname.split("/").filter(Boolean)[0] || "";
     }
 
-    if (host.endsWith("youtube.com")) {
-      if (url.pathname.startsWith("/embed/")) return url.toString();
+    if (host.endsWith("youtube.com") || host.endsWith("youtube-nocookie.com")) {
+      if (url.pathname.startsWith("/embed/")) {
+        return url.pathname.split("/").filter(Boolean)[1] || "";
+      }
+
       const videoId = url.searchParams.get("v");
-      if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+      if (videoId) return videoId;
     }
   } catch {
     // Treat non-URL values as YouTube IDs.
   }
 
-  return `https://www.youtube.com/embed/${encodeURIComponent(videoSource)}`;
+  return videoSource.trim();
+}
+
+function getYouTubeEmbedUrl(videoSource, embedOrigin) {
+  const videoId = getYouTubeVideoId(videoSource);
+
+  if (!videoId) return "";
+
+  const origin =
+    embedOrigin ??
+    (typeof window !== "undefined" && window.location?.origin
+      ? window.location.origin
+      : "");
+
+  const params = new URLSearchParams();
+
+  if (origin) {
+    params.set("origin", origin);
+  }
+
+  const query = params.toString();
+
+  return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}${query ? `?${query}` : ""}`;
+}
+
+function getYouTubeWatchUrl(videoSource) {
+  const videoId = getYouTubeVideoId(videoSource);
+
+  return videoId ? `https://www.youtube.com/watch?v=${encodeURIComponent(videoId)}` : "";
 }
 
 function YouTubeEmbed({ videoId, videoUrl, titleKey }) {
-  const embedUrl = getYouTubeEmbedUrl(videoUrl || videoId);
+  const [embedOrigin, setEmbedOrigin] = useState("");
+  const videoSource = videoUrl || videoId;
+  const embedUrl = getYouTubeEmbedUrl(videoSource, embedOrigin);
+  const watchUrl = getYouTubeWatchUrl(videoSource);
+
+  useEffect(() => {
+    if (window.location?.origin) {
+      setEmbedOrigin(window.location.origin);
+    }
+  }, []);
 
   if (!embedUrl) return null;
 
@@ -47,11 +87,19 @@ function YouTubeEmbed({ videoId, videoUrl, titleKey }) {
         src={embedUrl}
         title=""
         data-i18n-title={titleKey}
-        loading="lazy"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
         allowFullScreen
       ></iframe>
+      {watchUrl ? (
+        <a
+          className="other-possibility-card__video-fallback"
+          href={watchUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-i18n="other_possibilities_video_fallback"
+        ></a>
+      ) : null}
     </div>
   );
 }
