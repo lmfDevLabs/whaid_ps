@@ -1232,6 +1232,9 @@
 .uv-cell .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
 
 /* ---------- Signup / Demo form ---------- */
+#demo {
+  overflow-x: hidden;
+}
 .demo {
   background: var(--c-ink);
   color: #fff;
@@ -1239,9 +1242,9 @@
   padding: 72px;
   margin: 0 32px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 72px;
-  align-items: center;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
   position: relative;
   overflow: hidden;
   box-shadow: 0 50px 100px -40px rgba(37,24,40,0.4);
@@ -1255,8 +1258,29 @@
     radial-gradient(circle at 10% 90%, rgba(32,56,96,0.4), transparent 50%);
   pointer-events: none;
 }
-@media (max-width: 1000px) {
-  .demo { grid-template-columns: 1fr; padding: 40px 28px; margin: 0 20px; gap: 40px; border-radius: 28px; }
+.demo__content,
+.demo__form {
+  min-width: 0;
+}
+@media (max-width: 900px) {
+  .demo {
+    grid-template-columns: 1fr;
+    padding: 40px 28px;
+    margin: 0 20px;
+    gap: 36px;
+    border-radius: 28px;
+  }
+
+  .demo__content {
+    max-width: 680px;
+  }
+}
+@media (max-width: 640px) {
+  .demo {
+    padding: 32px 20px;
+    margin: 0 16px;
+    gap: 32px;
+  }
 }
 .demo__content { position: relative; }
 .demo__content .eyebrow { color: var(--c-lime); margin-bottom: 16px; }
@@ -1302,13 +1326,19 @@
   border-radius: 24px;
   padding: 32px;
   position: relative;
+  width: 100%;
+  min-width: 0;
   backdrop-filter: blur(10px);
 }
 .form-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 14px;
+}
+.form-single,
+.form-group {
+  min-width: 0;
 }
 .form-group { display: flex; flex-direction: column; gap: 6px; }
 .form-group label {
@@ -1329,6 +1359,9 @@
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 300;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   transition: all var(--dur-2) var(--ease);
 }
 .form-group input::placeholder { color: var(--c-muted-dark); opacity: 0.7; }
@@ -1366,6 +1399,31 @@
   color: var(--c-muted-dark);
   text-align: center;
   font-weight: 300;
+}
+@media (max-width: 640px) {
+  .demo__form {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .form-group {
+    width: 100%;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 16px;
+  }
+
+  .form-submit {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 /* ---------- Asset types carrousel ---------- */
