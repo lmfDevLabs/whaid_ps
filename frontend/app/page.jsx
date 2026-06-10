@@ -4,54 +4,71 @@ import { useEffect, useMemo, useState } from "react";
 
 const OTHER_POSSIBILITIES_MEDIA = {
   realEstate: {
-    youtubeId: "REAL_ESTATE_YOUTUBE_ID",
+    youtubeId: "_gQMjWyR1eQ",
     titleKey: "other_possibilities_real_estate_video_title",
   },
   inventory: {
-    youtubeId: "LOCATED_INVENTORY_YOUTUBE_ID",
+    youtubeId: "_gQMjWyR1eQ",
     titleKey: "other_possibilities_inventory_video_title",
   },
 };
 
 function getYouTubeEmbedUrl(videoSource) {
-  if (!videoSource) return "";
+  if (!videoSource || typeof videoSource !== "string") return "";
+
+  const cleanSource = videoSource.trim();
+
+  if (!cleanSource) return "";
 
   try {
-    const url = new URL(videoSource);
+    const url = new URL(cleanSource);
     const host = url.hostname.replace(/^www\./, "");
 
     if (host === "youtu.be") {
-      return `https://www.youtube.com/embed/${url.pathname.slice(1)}`;
+      const id = url.pathname.replace("/", "").trim();
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : "";
     }
 
     if (host.endsWith("youtube.com")) {
-      if (url.pathname.startsWith("/embed/")) return url.toString();
-      const videoId = url.searchParams.get("v");
-      if (videoId) return `https://www.youtube.com/embed/${videoId}`;
+      if (url.pathname.startsWith("/embed/")) {
+        return cleanSource.replace("https://www.youtube.com", "https://www.youtube-nocookie.com");
+      }
+
+      const id = url.searchParams.get("v");
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : "";
     }
   } catch {
-    // Treat non-URL values as YouTube IDs.
+    return `https://www.youtube-nocookie.com/embed/${encodeURIComponent(cleanSource)}`;
   }
 
-  return `https://www.youtube.com/embed/${encodeURIComponent(videoSource)}`;
+  return "";
 }
 
-function YouTubeEmbed({ videoId, videoUrl, titleKey }) {
-  const embedUrl = getYouTubeEmbedUrl(videoUrl || videoId);
+function YouTubeEmbed({ youtubeId, titleKey }) {
+  const embedUrl = getYouTubeEmbedUrl(youtubeId);
 
-  if (!embedUrl) return null;
+  console.log("[OtherPossibilities][YouTubeEmbed]", {
+    youtubeId,
+    source: youtubeId,
+    embedUrl,
+  });
 
   return (
-    <div className="other-possibility-card__video">
-      <iframe
-        src={embedUrl}
-        title=""
-        data-i18n-title={titleKey}
-        loading="lazy"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
-        allowFullScreen
-      ></iframe>
+    <div className="other-possibility-card__video" data-video-debug={embedUrl ? "has-url" : "missing-url"}>
+      {embedUrl ? (
+        <iframe
+          src={embedUrl}
+          title={titleKey || "Whaid video"}
+          data-i18n-title={titleKey}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      ) : (
+        <div className="other-possibility-card__video-fallback">
+          Missing YouTube source
+        </div>
+      )}
     </div>
   );
 }
