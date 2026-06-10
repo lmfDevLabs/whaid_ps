@@ -455,7 +455,7 @@ export default function HomePage() {
                   <span>Showroom: I Salón del Automóvil Usado 2026</span>
                 </div>
                 <div className="uv-title">¿Qué automoviles hay superiores al 2020 en la feria?</div>
-                <div className="uv-grid" style={{gridTemplateColumns: "repeat(4, 1fr)"}}>
+                <div className="uv-grid uv-grid--cars">
                   <div className="uv-cell"><span className="k">Audi A3</span><span className="v">2024 <span className="dot" style={{background: "#bdff00"}}></span></span></div>
                   <div className="uv-cell"><span className="k">BMW X3</span><span className="v">2025 <span className="dot" style={{background: "#bdff00"}}></span></span></div>
                   <div className="uv-cell"><span className="k">Mazda 6</span><span className="v">2023 <span className="dot" style={{background: "#bdff00"}}></span></span></div>
@@ -489,13 +489,13 @@ export default function HomePage() {
                   <span>CC Gran Titan Plaza</span>
                 </div>
                 <div className="uv-title">¿Qué locales de ropa informal para hombre hay?</div>
-                <div className="uv-grid" style={{gridTemplateColumns: "1fr 1fr"}}>
-                  <div className="uv-cell" style={{padding: "10px"}}><span className="k">Levi´s</span><span className="v" style={{fontSize: "22px"}}>Local L9-B</span></div>
-                  <div className="uv-cell" style={{padding: "10px"}}><span className="k">Diesel</span><span className="v" style={{fontSize: "22px"}}>Local L1-A</span></div>
-                  <div className="uv-cell" style={{padding: "10px"}}><span className="k">Pilatos</span><span className="v" style={{fontSize: "22px"}}>Local L10-B</span></div>
-                  <div className="uv-cell" style={{padding: "10px"}}><span className="k">Tennis</span><span className="v" style={{fontSize: "22px"}}>Local L18-C</span></div>
-                  <div className="uv-cell" style={{padding: "10px"}}><span className="k">Lec Lee</span><span className="v" style={{fontSize: "22px"}}>Local L21-B</span></div>
-                  <div className="uv-cell" style={{padding: "10px"}}><span className="k">Americanico</span><span className="v" style={{fontSize: "22px"}}>Local L11-C</span></div>
+                <div className="uv-grid uv-grid--stores">
+                  <div className="uv-cell uv-cell--compact"><span className="k">Levi´s</span><span className="v v--large">Local L9-B</span></div>
+                  <div className="uv-cell uv-cell--compact"><span className="k">Diesel</span><span className="v v--large">Local L1-A</span></div>
+                  <div className="uv-cell uv-cell--compact"><span className="k">Pilatos</span><span className="v v--large">Local L10-B</span></div>
+                  <div className="uv-cell uv-cell--compact"><span className="k">Tennis</span><span className="v v--large">Local L18-C</span></div>
+                  <div className="uv-cell uv-cell--compact"><span className="k">Lec Lee</span><span className="v v--large">Local L21-B</span></div>
+                  <div className="uv-cell uv-cell--compact"><span className="k">Americanico</span><span className="v v--large">Local L11-C</span></div>
                 </div>
               </div>
             </article>
@@ -517,7 +517,7 @@ export default function HomePage() {
                   <span>¿Cuales sala de conferencias estan disponibles que cuenten con videobeam del Ed. Barón y de cuantas personas es su aforo?</span>
                 </div>
                 <div className="uv-title">Aulas &amp; laboratorios</div>
-                <div className="uv-grid" style={{gridTemplateColumns: "repeat(3, 1fr)", gap: "8px"}}>
+                <div className="uv-grid uv-grid--campus">
                   <div className="uv-cell"><span className="k">S1-101</span><span className="v">Aforo 50 puestos</span></div>
                   <div className="uv-cell"><span className="k">S1-102</span><span className="v">Aforo 50 puestos</span></div>
                   <div className="uv-cell"><span className="k">S1-103</span><span className="v">Aforo 150 puestos</span></div>

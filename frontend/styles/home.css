@@ -1209,7 +1209,12 @@
 .uv-grid {
   display: grid;
   gap: 10px;
+  width: 100%;
+  min-width: 0;
 }
+.uv-grid--cars { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.uv-grid--stores { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.uv-grid--campus { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
 .uv-cell {
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.08);
@@ -1229,7 +1234,87 @@
 }
 .uv-cell .k { opacity: 0.5; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; }
 .uv-cell .v { font-size: 14px; color: var(--c-lime); font-family: var(--font-body); font-weight: 500; }
+.uv-cell--compact { padding: 10px; }
+.uv-cell .v--large { font-size: 22px; }
 .uv-cell .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }
+
+@media (max-width: 640px) {
+  .usecase {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 28px 18px;
+  }
+
+  .usecase > * { min-width: 0; }
+
+  .usecase__visual {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-height: auto;
+    height: auto;
+    aspect-ratio: auto;
+    overflow: visible;
+    transform: none;
+    position: relative;
+    padding: 18px;
+    box-sizing: border-box;
+  }
+
+  .uv-header {
+    max-width: 100%;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  .uv-title {
+    font-size: clamp(18px, 5vw, 24px);
+    line-height: 1.15;
+    overflow-wrap: anywhere;
+  }
+
+  .uv-grid,
+  .uv-grid--cars,
+  .uv-grid--stores,
+  .uv-grid--campus {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .uv-cell,
+  .uv-cell--compact {
+    min-width: 0;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  .uv-cell .k,
+  .uv-cell .v {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .uv-cell .v,
+  .uv-cell .v--large {
+    font-size: clamp(14px, 4vw, 18px);
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 390px) {
+  .uv-grid,
+  .uv-grid--cars,
+  .uv-grid--stores,
+  .uv-grid--campus {
+    grid-template-columns: 1fr;
+  }
+
+  .usecase__visual { padding: 16px; }
+}
 
 /* ---------- Signup / Demo form ---------- */
 #demo {
