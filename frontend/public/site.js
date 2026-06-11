@@ -9,7 +9,7 @@ const DICT = {
     nav_blog: 'Blog',
     nav_product: 'Producto',
     nav_use_cases: 'Casos de uso',
-    nav_pricing: 'Pricing',
+    nav_pricing: 'Precio',
     nav_cta: 'Agendar demo',
 
     hero_eyebrow: 'Asistente IA para tus visitantes',

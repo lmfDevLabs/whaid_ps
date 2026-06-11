@@ -3,12 +3,12 @@
 import { useEffect, useMemo, useState } from "react";
 
 const PRICING_PROVIDERS = [
-  { id: "gcp", logo: "/logos/dummy-gcp.svg", services: 5 },
-  { id: "openai", logo: "/logos/dummy-openai.svg", services: 2 },
-  { id: "pinecone", logo: "/logos/dummy-pinecone.svg", services: 3 },
-  { id: "algolia", logo: "/logos/dummy-algolia.svg", services: 3 },
-  { id: "firecms", logo: "/logos/dummy-firecms.svg", services: 3 },
-  { id: "langsmith", logo: "/logos/dummy-langsmith.svg", services: 3 },
+  { id: "gcp", logo: "../assets/logos_servicios/google-cloud-logo.svg", services: 5 },
+  { id: "openai", logo: "../assets/logos_servicios/openai-logo.svg", services: 2 },
+  { id: "pinecone", logo: "../assets/logos_servicios/pinecone-logo.svg", services: 3 },
+  { id: "algolia", logo: "../assets/logos_servicios/google-cloud-logo.svg", services: 3 },
+  { id: "firecms", logo: "../assets/logos_servicios/algolia-logo.svg", services: 3 },
+  { id: "langsmith", logo: "../assets/logos_servicios/langsmith-logo.svg", services: 3 },
 ];
 
 const SECURITY_CARDS = [
