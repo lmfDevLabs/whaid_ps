@@ -122,7 +122,7 @@ function PricingSection() {
   return (
     <section className="section section--pricing" id="pricing" aria-labelledby="pricing-title">
       <div className="container">
-        <div className="pricing reveal">
+        <div className="pricing">
           <div className="pricing__head">
             <span className="eyebrow" data-i18n="pricing_eyebrow"></span>
             <h2 id="pricing-title" data-i18n="pricing_title"></h2>
