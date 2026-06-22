@@ -2,13 +2,15 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+const PRICING_LOGO_BASE_PATH = "/assets/logos_servicios";
+
 const PRICING_PROVIDERS = [
-  { id: "gcp", logo: "../assets/logos_servicios/google-cloud-logo.svg", services: 5 },
-  { id: "openai", logo: "../assets/logos_servicios/openai-logo.svg", services: 2 },
-  { id: "pinecone", logo: "../assets/logos_servicios/pinecone-logo.svg", services: 3 },
-  { id: "algolia", logo: "../assets/logos_servicios/google-cloud-logo.svg", services: 3 },
-  { id: "firecms", logo: "../assets/logos_servicios/algolia-logo.svg", services: 3 },
-  { id: "langsmith", logo: "../assets/logos_servicios/langsmith-logo.svg", services: 3 },
+  { id: "gcp", logo: `${PRICING_LOGO_BASE_PATH}/google-cloud-logo.svg`, logoFallback: "GCP", services: 5 },
+  { id: "openai", logo: `${PRICING_LOGO_BASE_PATH}/openai-logo.svg`, logoFallback: "AI", services: 2 },
+  { id: "pinecone", logo: `${PRICING_LOGO_BASE_PATH}/pinecone-logo.svg`, logoFallback: "PC", services: 3 },
+  { id: "algolia", logo: `${PRICING_LOGO_BASE_PATH}/algolia-logo.svg`, logoFallback: "AG", services: 3 },
+  { id: "firecms", logo: `${PRICING_LOGO_BASE_PATH}/firecms-logo.svg`, logoFallback: "CMS", services: 3 },
+  { id: "langsmith", logo: `${PRICING_LOGO_BASE_PATH}/langsmith-logo.svg`, logoFallback: "LS", services: 3 },
 ];
 
 const SECURITY_CARDS = [
@@ -96,6 +98,26 @@ function SecuritySection() {
   );
 }
 
+function PricingServiceLogo({ src, fallback, nameKey }) {
+  const [hasLogoError, setHasLogoError] = useState(false);
+
+  return (
+    <span className="pricing-card__logoWrap" aria-hidden="true">
+      {hasLogoError ? (
+        <span className="pricing-card__logoFallback">{fallback}</span>
+      ) : (
+        <img
+          className="pricing-card__logo"
+          src={src}
+          alt=""
+          data-i18n-title={nameKey}
+          onError={() => setHasLogoError(true)}
+        />
+      )}
+    </span>
+  );
+}
+
 function PricingSection() {
   return (
     <section className="section section--pricing" id="pricing" aria-labelledby="pricing-title">
@@ -118,7 +140,11 @@ function PricingSection() {
             {PRICING_PROVIDERS.map((provider) => (
               <article className="pricing-card" key={provider.id}>
                 <div className="pricing-card__top">
-                  <img className="pricing-card__logo" src={provider.logo} alt="" aria-hidden="true" />
+                  <PricingServiceLogo
+                    src={provider.logo}
+                    fallback={provider.logoFallback}
+                    nameKey={`pricing_${provider.id}_name`}
+                  />
                   <div>
                     <span className="pricing-card__label" data-i18n="pricing_provider_label"></span>
                     <h3 data-i18n={`pricing_${provider.id}_name`}></h3>
