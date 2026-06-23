@@ -1,3 +1,5 @@
+import FooterSocialLinks from "../FooterSocialLinks";
+import {siteUrl} from "../../lib/siteLinks";
 import MarkdownContent from "./MarkdownContent";
 import PostAuthor from "./PostAuthor";
 import PostMediaBlock from "./PostMediaBlock";
@@ -51,15 +53,30 @@ function Footer() {
           <div className="footer__col"><h4 data-i18n="footer_company">Compañía</h4><ul><li><a href="/blog">Blog</a></li><li><a href="#">Sobre nosotros</a></li><li><a href="#">Contacto</a></li><li><a href="#">Careers</a></li></ul></div>
           <div className="footer__col"><h4 data-i18n="footer_legal">Legal</h4><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li><li><a href="#">Cookies</a></li><li><a href="#">DPA</a></li></ul></div>
         </div>
-        <div className="footer__bottom"><span className="footer__copy" data-i18n="footer_copy">© 2026 Whaid. Hecho con cuidado en LatAm.</span></div>
+        <div className="footer__bottom"><span className="footer__copy" data-i18n="footer_copy">© 2026 Whaid. Hecho con cuidado en LatAm.</span><FooterSocialLinks /></div>
       </div>
     </footer>
   );
 }
 
-export default function PostTemplate({post}) {
+export default function PostTemplate({post, slug}) {
   const date = formatDate(post?.published_at);
   const readTime = readingTime(post?.content);
+  const postSlug = slug || post?.slug || post?.id || "";
+  const postUrl = `${siteUrl}/blog/${encodeURIComponent(postSlug)}`;
+  const postTitle = post?.title || "Artículo de Whaid";
+  const shareLinks = [
+    {
+      name: "LinkedIn",
+      href: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`,
+      ariaLabel: "Compartir este artículo en LinkedIn",
+    },
+    {
+      name: "X",
+      href: `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(postTitle)}`,
+      ariaLabel: "Compartir este artículo en X",
+    },
+  ];
 
   return (
     <>
@@ -100,7 +117,12 @@ export default function PostTemplate({post}) {
       </article>
 
       <div className="post-footer">
-        <div className="post-share"><span className="post-share__label">Compartir</span><a href="https://www.linkedin.com/company/whaid" aria-label="Compartir en LinkedIn">in</a><a href="/blog" aria-label="Volver al blog">↩</a></div>
+        <div className="post-share" aria-label="Compartir artículo">
+          <span className="post-share__label">Compartir artículo</span>
+          {shareLinks.map((link) => (
+            <a key={link.name} href={link.href} aria-label={link.ariaLabel} target="_blank" rel="noopener noreferrer">{link.name}</a>
+          ))}
+        </div>
         <a href="/#demo" className="btn btn--primary">Agendar demo</a>
       </div>
       <Footer />
