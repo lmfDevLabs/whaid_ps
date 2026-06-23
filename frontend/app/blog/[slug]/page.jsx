@@ -12,5 +12,5 @@ export default async function BlogPostPage({params}) {
     notFound();
   }
 
-  return <PostTemplate post={post} />;
+  return <PostTemplate post={post} slug={slug} />;
 }

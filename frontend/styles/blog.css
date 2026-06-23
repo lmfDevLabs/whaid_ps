@@ -580,6 +580,7 @@
   display: flex;
   gap: 8px;
   align-items: center;
+  flex-wrap: wrap;
 }
 .post-share__label {
   font-family: var(--font-mono);
@@ -591,14 +592,20 @@
   margin-right: 10px;
 }
 .post-share a {
-  width: 36px;
-  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0 14px;
   border-radius: 999px;
   border: 1px solid var(--border);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .8px;
+  text-decoration: none;
   transition: all var(--dur-2) var(--ease);
 }
 .post-share a:hover { border-color: var(--c-navy); color: var(--c-navy); transform: translateY(-2px); }
