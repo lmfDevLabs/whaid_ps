@@ -1,3 +1,5 @@
+import {normalizeBlogImageUrl} from "./blogSocialMetadata";
+
 const DEFAULT_BLOG_API_BASE_URL =
   "https://us-central1-whaid-public-site-dd23f.cloudfunctions.net/api";
 
@@ -9,37 +11,6 @@ export const getBlogApiBaseUrl = () => {
   ).replace(/\/$/, "");
 };
 
-const toPublicStorageUrl = (value) => {
-  if (typeof value !== "string") return value;
-
-  const raw = value.trim();
-  if (!raw) return "";
-
-  if (raw.startsWith("http://") || raw.startsWith("https://") || raw.startsWith("/")) {
-    return raw;
-  }
-
-  if (!raw.startsWith("gs://")) {
-    return raw;
-  }
-
-  const withoutScheme = raw.slice(5);
-  const slashIndex = withoutScheme.indexOf("/");
-
-  if (slashIndex === -1) {
-    return raw;
-  }
-
-  const bucket = withoutScheme.slice(0, slashIndex).trim();
-  const objectPath = withoutScheme.slice(slashIndex + 1).trim();
-
-  if (!bucket || !objectPath) {
-    return raw;
-  }
-
-  return `https://firebasestorage.googleapis.com/v0/b/${encodeURIComponent(bucket)}/o/${encodeURIComponent(objectPath)}?alt=media`;
-};
-
 const normalizePostMediaFields = (post) => {
   if (!post || typeof post !== "object") {
     return post;
@@ -47,8 +18,8 @@ const normalizePostMediaFields = (post) => {
 
   return {
     ...post,
-    cover_image_url: toPublicStorageUrl(post.cover_image_url),
-    avatar_author: toPublicStorageUrl(post.avatar_author),
+    cover_image_url: normalizeBlogImageUrl(post.cover_image_url),
+    avatar_author: normalizeBlogImageUrl(post.avatar_author),
   };
 };
 
