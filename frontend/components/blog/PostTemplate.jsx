@@ -1,4 +1,5 @@
 import FooterSocialLinks from "../FooterSocialLinks";
+import SiteNav from "../SiteNav";
 import {siteUrl} from "../../lib/siteLinks";
 import MarkdownContent from "./MarkdownContent";
 import PostAuthor from "./PostAuthor";
@@ -18,31 +19,6 @@ const readingTime = (content) => {
   if (!words) return "";
   return `${Math.max(1, Math.ceil(words / 220))} min de lectura`;
 };
-
-function Nav() {
-  return (
-    <nav className="nav" aria-label="Principal">
-      <div className="nav__inner">
-        <a href="/" className="nav__logo" aria-label="Whaid"><img src="/assets/whaid-logo-nav.png" alt="Whaid" /></a>
-        <div className="nav__links" id="nav-menu">
-          <a href="/" data-i18n="nav_home">Home</a>
-          <a href="/#keyshots" data-i18n="nav_product">Producto</a>
-          <a href="/#usecases" data-i18n="nav_use_cases">Casos de uso</a>
-          <a href="/blog" aria-current="page" data-i18n="nav_blog">Blog</a>
-          <a href="/#demo" className="nav__mobile-cta"><span data-i18n="nav_cta">Agendar demo</span></a>
-        </div>
-        <div className="nav__actions">
-          <button className="chip-btn" id="lang-switch" aria-label="Cambiar idioma">EN</button>
-          <button className="chip-btn" id="theme-switch" aria-label="Cambiar tema">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-          </button>
-          <a href="/#demo" className="btn btn--primary btn--sm nav__desktop-cta"><span data-i18n="nav_cta">Agendar demo</span></a>
-          <button className="menu-toggle" id="menu-toggle" aria-label="Menú" aria-expanded="false" aria-controls="nav-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
-        </div>
-      </div>
-    </nav>
-  );
-}
 
 function Footer() {
   return (
@@ -81,7 +57,7 @@ export default function PostTemplate({post, slug}) {
 
   return (
     <>
-      <Nav />
+      <SiteNav activeItem="blog" demoHref="/#demo" />
       <header className="post-header">
         <div className="post-header__inner">
           <a href="/blog" className="post-back">
