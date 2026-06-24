@@ -636,7 +636,7 @@ export default function HomePage() {
                 <span className="usecase__label" data-i18n="uc1_label">Shows y ferias</span>
                 <h3 data-i18n="uc1_title">Ofrece información actualizada de todo sobre tu evento sobre:</h3>
                 <p data-i18n="uc1_body">Expositores, stands, productos, eventos, agenda, ubicaciones, promociones, personal y más</p>
-                <a href="/blog" className="learn-more"><span data-i18n="read_more">Leer más</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="https://whaid.co/blog/whaid-para-ferias-conectar-visitantes-expositores" className="learn-more"><span data-i18n="read_more">Leer más</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                 <div className="usecase__stat">
                   <span className="usecase__stat-num">50%</span>
                   <span className="usecase__stat-txt" data-i18n="uc1_stat_a">Menos tiempo buscando y más cerrando negocios</span>
@@ -670,7 +670,7 @@ export default function HomePage() {
                 <span className="usecase__label" data-i18n="uc2_label">Centros comerciales</span>
                 <h3 data-i18n="uc2_title">Todo sobre el Centro Comercial en una sola conversación</h3>
                 <p data-i18n="uc2_body">Locales, promociones, productos, ubicación de espacios, eventos especiales todo lo que tus visitantes quisieran conocer</p>
-                <a href="/blog" className="learn-more"><span data-i18n="read_more">Leer más</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="https://whaid.co/blog/whaid-para-centros-comerciales-descubrimiento-visitantes" className="learn-more"><span data-i18n="read_more">Leer más</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                 <div className="usecase__stat">
                   <span className="usecase__stat-num">100%</span>
                   <span className="usecase__stat-txt" data-i18n="uc2_stat_a">De más de información relevante durante la visita</span>
@@ -698,7 +698,7 @@ export default function HomePage() {
                 <span className="usecase__label" data-i18n="uc3_label">Universidades</span>
                 <h3 data-i18n="uc3_title">Respuestas claras sobre campus y comunidad.</h3>
                 <p data-i18n="uc3_body">Aulas, laboratorios, inventarios, equipos, profesores, capital humano, eventos, agendas y todo lo que se debe saber de un Campus</p>
-                <a href="/blog" className="learn-more"><span data-i18n="read_more">Leer más</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+                <a href="https://whaid.co/blog/whaid-para-universidades-informacion-publica-campus" className="learn-more"><span data-i18n="read_more">Leer más</span> <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
                 <div className="usecase__stat">
                   <span className="usecase__stat-num">3×</span>
                   <span className="usecase__stat-txt" data-i18n="uc3_stat_a">Más nocion sobre todo lo que hay en el campus</span>
