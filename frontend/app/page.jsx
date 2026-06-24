@@ -833,6 +833,10 @@ export default function HomePage() {
                 <p>Campañas, cupones y métricas de activación.</p>
               </div>
             </article>
+            <aside className="asset-callout" aria-labelledby="asset-callout-label">
+              <span id="asset-callout-label" className="asset-callout__label" data-i18n="assets_callout_label">Modelo flexible</span>
+              <p data-i18n="assets_callout_body">Estas colecciones son solo un punto de partida. Whaid puede adaptarse al modelo de información de cada espacio para representar activos, servicios, personas, documentos, lugares, oportunidades o cualquier dato que necesite ser encontrado, entendido y consultado de forma natural.</p>
+            </aside>
           </div>
         </div>
       </section>

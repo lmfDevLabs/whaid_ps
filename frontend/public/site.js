@@ -175,6 +175,8 @@ const DICT = {
     a6: 'Productos',
     a7: 'Actividades',
     a8: 'Promociones',
+    assets_callout_label: 'Modelo flexible',
+    assets_callout_body: 'Estas colecciones son solo un punto de partida. Whaid puede adaptarse al modelo de información de cada espacio para representar activos, servicios, personas, documentos, lugares, oportunidades o cualquier dato que necesite ser encontrado, entendido y consultado de forma natural.',
 
     nav_pitch: 'Pitch',
     pitch_eyebrow: 'Pitch · 90 segundos',
@@ -389,6 +391,8 @@ const DICT = {
     a6: 'Products',
     a7: 'Activities',
     a8: 'Promotions',
+    assets_callout_label: 'Flexible model',
+    assets_callout_body: 'These collections are only a starting point. Whaid can adapt to each space’s information model to represent assets, services, people, documents, places, opportunities, or any data that needs to be found, understood, and consulted naturally.',
 
     nav_pitch: 'Pitch',
     pitch_eyebrow: 'Pitch · 90 seconds',
