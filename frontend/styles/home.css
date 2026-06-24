@@ -1601,6 +1601,9 @@
     radial-gradient(circle at 0% 0%, rgba(189, 255, 0, 0.14), transparent 32%),
     linear-gradient(135deg, rgba(189, 255, 0, 0.055), rgba(255, 255, 255, 0.025));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 .asset-callout::before {
   content: '';
@@ -1611,6 +1614,31 @@
   background: var(--c-green);
 }
 [data-theme="dark"] .asset-callout::before { background: var(--c-lime); }
+
+.asset-callout__icon {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  flex: 0 0 72px;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  border: 1px solid rgba(189, 255, 0, 0.22);
+  border-radius: 22px;
+  color: var(--c-green);
+  background: rgba(189, 255, 0, 0.06);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 28px rgba(189, 255, 0, 0.08);
+}
+[data-theme="dark"] .asset-callout__icon { color: var(--c-lime); }
+.asset-callout__icon svg {
+  width: 42px;
+  height: 42px;
+  stroke-width: 1.6;
+}
+.asset-callout__content {
+  position: relative;
+  z-index: 1;
+}
 .asset-callout__label {
   display: inline-flex;
   align-items: center;
@@ -1646,7 +1674,9 @@
 
 @media (max-width: 640px) {
   .assets-carrousel { grid-template-columns: 1fr; }
-  .asset-callout { padding: 24px 22px 26px; border-radius: 20px; }
+  .asset-callout { align-items: flex-start; flex-direction: column; gap: 18px; padding: 24px 22px 26px; border-radius: 20px; }
+  .asset-callout__icon { flex-basis: auto; width: 60px; height: 60px; border-radius: 18px; }
+  .asset-callout__icon svg { width: 36px; height: 36px; }
 }
 
 /* ---------- Take a look: big chat demo ---------- */

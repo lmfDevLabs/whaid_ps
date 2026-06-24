@@ -834,8 +834,20 @@ export default function HomePage() {
               </div>
             </article>
             <aside className="asset-callout" aria-labelledby="asset-callout-label">
-              <span id="asset-callout-label" className="asset-callout__label" data-i18n="assets_callout_label">Modelo flexible</span>
-              <p data-i18n="assets_callout_body">Estas colecciones son solo un punto de partida. Whaid puede adaptarse al modelo de información de cada espacio para representar activos, servicios, personas, documentos, lugares, oportunidades o cualquier dato que necesite ser encontrado, entendido y consultado de forma natural.</p>
+              <span className="asset-callout__icon" aria-hidden="true">
+                <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M24 16v16M16 24h16M17 17l-5-5M31 17l5-5M17 31l-5 5M31 31l5 5" />
+                  <circle cx="24" cy="24" r="6" />
+                  <circle cx="10" cy="10" r="4" />
+                  <circle cx="38" cy="10" r="4" />
+                  <circle cx="10" cy="38" r="4" />
+                  <circle cx="38" cy="38" r="4" />
+                </svg>
+              </span>
+              <div className="asset-callout__content">
+                <span id="asset-callout-label" className="asset-callout__label" data-i18n="assets_callout_label">Modelo flexible</span>
+                <p data-i18n="assets_callout_body">Estas colecciones son solo un punto de partida. Whaid puede adaptarse al modelo de información de cada espacio para representar activos, servicios, personas, documentos, lugares, oportunidades o cualquier dato que necesite ser encontrado, entendido y consultado de forma natural.</p>
+              </div>
             </aside>
           </div>
         </div>
