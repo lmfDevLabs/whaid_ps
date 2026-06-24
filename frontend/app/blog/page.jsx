@@ -1,4 +1,5 @@
 import FooterSocialLinks from "../../components/FooterSocialLinks";
+import SiteNav from "../../components/SiteNav";
 import {fetchPublishedPosts} from "../../lib/blogApi";
 import ImageWithFallback from "../../components/blog/ImageWithFallback";
 
@@ -10,18 +11,6 @@ const formatDate = (value) => {
   if (Number.isNaN(date.getTime())) return "";
   return new Intl.DateTimeFormat("es", {day: "2-digit", month: "short", year: "numeric"}).format(date).toUpperCase();
 };
-
-function Nav() {
-  return (
-    <nav className="nav" aria-label="Principal">
-      <div className="nav__inner">
-        <a href="/" className="nav__logo" aria-label="Whaid"><img src="/assets/whaid-logo-nav.png" alt="Whaid" /></a>
-        <div className="nav__links" id="nav-menu"><a href="/" data-i18n="nav_home">Home</a><a href="/#keyshots" data-i18n="nav_product">Producto</a><a href="/#usecases" data-i18n="nav_use_cases">Casos de uso</a><a href="/blog" aria-current="page" data-i18n="nav_blog">Blog</a><a href="/#demo" className="nav__mobile-cta"><span data-i18n="nav_cta">Agendar demo</span></a></div>
-        <div className="nav__actions"><button className="chip-btn" id="lang-switch" aria-label="Cambiar idioma">EN</button><button className="chip-btn" id="theme-switch" aria-label="Cambiar tema"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg></button><a href="/#demo" className="btn btn--primary btn--sm nav__desktop-cta"><span data-i18n="nav_cta">Agendar demo</span></a><button className="menu-toggle" id="menu-toggle" aria-label="Menú" aria-expanded="false" aria-controls="nav-menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button></div>
-      </div>
-    </nav>
-  );
-}
 
 function Footer() {
   return (
@@ -71,7 +60,7 @@ export default async function BlogPage() {
 
   return (
     <>
-      <Nav />
+      <SiteNav activeItem="blog" demoHref="/#demo" />
       <header className="blog-hero"><div className="blog-hero__inner"><div><span className="eyebrow" data-i18n="blog_eyebrow">Journal</span><h1><span data-i18n="blog_title_a">Ideas sobre IA, operaciones y </span><span className="accent" data-i18n="blog_title_b">conversación</span><span data-i18n="blog_title_c">.</span></h1></div><p data-i18n="blog_sub">Ensayos, casos de estudio y notas técnicas del equipo de Whaid.</p></div></header>
       <div className="blog-tags" role="tablist" aria-label="Filtrar por categoría"><button className="blog-tag is-active" data-tag="all">Todos</button><button className="blog-tag" data-tag="producto">Producto</button><button className="blog-tag" data-tag="ia">IA &amp; LLMs</button><button className="blog-tag" data-tag="casos">Casos de estudio</button><button className="blog-tag" data-tag="ingenieria">Ingeniería</button><button className="blog-tag" data-tag="operaciones">Operaciones</button></div>
 
