@@ -65,6 +65,44 @@ const SECURITY_CARDS = [
   },
 ];
 
+
+function WhaidVisualResponseCard({
+  id,
+  className = "",
+  url = "whaid.app/expoandina/piso-2",
+  urlKey,
+  eyebrowKey = "panel_eyebrow",
+  eyebrow = "Vista visual · Opciones encontradas",
+  titleKey = "panel_title",
+  title = "3 marcas · 1 promoción",
+  rows = [],
+  hidden = false,
+}) {
+  const classes = ["web-panel", className].filter(Boolean).join(" ");
+
+  return (
+    <div className={classes} id={id} aria-hidden={hidden ? "true" : undefined}>
+      <div className="web-panel__bar">
+        <div className="web-panel__dots"><span></span><span></span><span></span></div>
+        <div className="web-panel__url"><span className="lock">🔒</span><span data-i18n={urlKey}>{url}</span></div>
+      </div>
+      <div className="web-panel__body">
+        <p className="web-panel__eyebrow" data-i18n={eyebrowKey}>{eyebrow}</p>
+        <h4 className="web-panel__title" data-i18n={titleKey}>{title}</h4>
+
+        <div className="web-panel__list">
+          {rows.map((row) => (
+            <div className={`web-panel__row ${row.tone || "ok"}`} key={row.id}>
+              <span className="id" data-i18n={row.idKey}>{row.id}</span>
+              <span className="name" data-i18n={row.nameKey}>{row.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SecuritySection() {
   return (
     <section className="section section--security" id="security" aria-labelledby="security-title">
@@ -427,34 +465,15 @@ export default function HomePage() {
             </div>
 
             {/* Web panel that "pops out" of the chat when a link card is tapped */}
-            <div className="web-panel" id="web-panel-hero" aria-hidden="true">
-              <div className="web-panel__bar">
-                <div className="web-panel__dots"><span></span><span></span><span></span></div>
-                <div className="web-panel__url"><span className="lock">🔒</span>whaid.app/expoandina/piso-2</div>
-              </div>
-              <div className="web-panel__body">
-                <p className="web-panel__eyebrow" data-i18n="panel_eyebrow">Vista enriquecida · Piso 2</p>
-                <h4 className="web-panel__title" data-i18n="panel_title">86 stands · 2 incidencias</h4>
-                
-                <div className="web-panel__list">
-                  <div className="web-panel__row warn">
-                    <span className="id">A-14</span>
-                    <span className="name" data-i18n="panel_row_a14"></span>
-                    
-                  </div>
-                  <div className="web-panel__row bad">
-                    <span className="id">B-04</span>
-                    <span className="name" data-i18n="panel_row_b04"></span>
-                    
-                  </div>
-                  <div className="web-panel__row ok">
-                    <span className="id">B-05</span>
-                    <span className="name" data-i18n="panel_row_b05"></span>
-                    
-                  </div>
-                </div>
-              </div>
-            </div>
+            <WhaidVisualResponseCard
+              id="web-panel-hero"
+              hidden
+              rows={[
+                { id: "A-14", nameKey: "panel_row_a14", name: "EcoTela · Pabellón 2", tone: "warn" },
+                { id: "B-04", nameKey: "panel_row_b04", name: "VerdeWear · Stand B-14", tone: "bad" },
+                { id: "B-05", nameKey: "panel_row_b05", name: "Andes Fibers · Zona Diseño", tone: "ok" },
+              ]}
+            />
           </div>
         </div>
       </header>
@@ -921,6 +940,23 @@ export default function HomePage() {
               <div className="takelook__note-label">05 · Ampliación</div>
               <h4>URLs extendidas</h4>
               <p>Se ofrecen enlaces dinamicos y seguros, con información más completa acorde al contexto de la conversación</p>
+            </div>
+            <div className="takelook__visual-step">
+              <div className="takelook__note-label" data-i18n="takelook_visual_step">06 · Vista enriquecida</div>
+              <WhaidVisualResponseCard
+                className="web-panel--inline takelook__visual-card"
+                url="whaid.app/evento/opciones"
+                urlKey="takelook_visual_url"
+                eyebrowKey="takelook_visual_eyebrow"
+                eyebrow="VISTA VISUAL · OPCIONES ENCONTRADAS"
+                titleKey="takelook_visual_title"
+                title="3 opciones relevantes"
+                rows={[
+                  { id: "A", idKey: "takelook_visual_row_1_id", nameKey: "takelook_visual_row_1", name: "Auditorio A · Charla recomendada", tone: "ok" },
+                  { id: "B-12", idKey: "takelook_visual_row_2_id", nameKey: "takelook_visual_row_2", name: "Stand B-12 · Innovación", tone: "warn" },
+                  { id: "P2", idKey: "takelook_visual_row_3_id", nameKey: "takelook_visual_row_3", name: "Piso 2 · Networking", tone: "ok" },
+                ]}
+              />
             </div>
           </div>
         </div>
