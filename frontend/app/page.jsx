@@ -936,13 +936,10 @@ export default function HomePage() {
               <h4>Puedes seguir preguntando.</h4>
               <p>En la conversación se mantiene el hilo. El visitante no necesita repetir el contexto</p>
             </div>
-            <div className="takelook__note">
+            <div className="takelook__note takelook__note--expanded">
               <div className="takelook__note-label">05 · Ampliación</div>
               <h4>URLs extendidas</h4>
-              <p>Se ofrecen enlaces dinamicos y seguros, con información más completa acorde al contexto de la conversación</p>
-            </div>
-            <div className="takelook__visual-step">
-              <div className="takelook__note-label" data-i18n="takelook_visual_step">06 · Vista enriquecida</div>
+              <p>Se ofrecen enlaces dinámicos y seguros, con información más completa acorde al contexto de la conversación</p>
               <WhaidVisualResponseCard
                 className="web-panel--inline takelook__visual-card"
                 url="whaid.app/evento/opciones"
