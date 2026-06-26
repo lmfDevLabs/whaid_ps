@@ -230,11 +230,12 @@ function PricingSection() {
 
 const OTHER_POSSIBILITIES_MEDIA = {
   realEstate: {
-    youtubeId: "_gQMjWyR1eQ",
+    videoUrl: "https://firebasestorage.googleapis.com/v0/b/whaid-public-site-dd23f.firebasestorage.app/o/inmobiliarias.mp4?alt=media&token=ea6617e0-6a25-4974-b97b-48a1ccec4034",
     titleKey: "other_possibilities_real_estate_video_title",
   },
   inventory: {
-    youtubeId: "_gQMjWyR1eQ",
+    // Placeholder: replace this URL with the final Inventarios Cloud Storage video when available.
+    videoUrl: "https://firebasestorage.googleapis.com/v0/b/whaid-public-site-dd23f.firebasestorage.app/o/inventarios.mp4?alt=media&token=e2353925-3486-4246-8561-007e4f0101ee",
     titleKey: "other_possibilities_inventory_video_title",
   },
 };
@@ -270,18 +271,35 @@ function getYouTubeEmbedUrl(videoSource) {
   return "";
 }
 
-function YouTubeEmbed({ youtubeId, titleKey }) {
-  const embedUrl = getYouTubeEmbedUrl(youtubeId);
+function getVideoSourceType(url) {
+  if (!url || typeof url !== "string") return "unknown";
 
-  console.log("[OtherPossibilities][YouTubeEmbed]", {
-    youtubeId,
-    source: youtubeId,
-    embedUrl,
-  });
+  const normalizedUrl = url.toLowerCase();
+
+  if (
+    normalizedUrl.includes("youtube.com") ||
+    normalizedUrl.includes("youtu.be")
+  ) {
+    return "youtube";
+  }
+
+  if (
+    normalizedUrl.includes(".mp4") ||
+    normalizedUrl.includes("firebasestorage.googleapis.com")
+  ) {
+    return "mp4";
+  }
+
+  return "unknown";
+}
+
+function VideoEmbed({ videoUrl, titleKey }) {
+  const videoType = getVideoSourceType(videoUrl);
+  const embedUrl = videoType === "youtube" ? getYouTubeEmbedUrl(videoUrl) : "";
 
   return (
-    <div className="other-possibility-card__video" data-video-debug={embedUrl ? "has-url" : "missing-url"}>
-      {embedUrl ? (
+    <div className="other-possibility-card__video" data-video-type={videoType}>
+      {videoType === "youtube" && embedUrl ? (
         <iframe
           src={embedUrl}
           title={titleKey || "Whaid video"}
@@ -290,11 +308,26 @@ function YouTubeEmbed({ youtubeId, titleKey }) {
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
         />
-      ) : (
+      ) : null}
+
+      {videoType === "mp4" ? (
+        <video
+          controls
+          playsInline
+          preload="metadata"
+          title={titleKey || "Whaid video"}
+          data-i18n-title={titleKey}
+        >
+          <source src={videoUrl} type="video/mp4" />
+          Tu navegador no soporta la reproducción de video.
+        </video>
+      ) : null}
+
+      {videoType === "unknown" || (videoType === "youtube" && !embedUrl) ? (
         <div className="other-possibility-card__video-fallback">
-          Missing YouTube source
+          Missing video source
         </div>
-      )}
+      ) : null}
     </div>
   );
 }
@@ -314,7 +347,7 @@ function OtherPossibilitiesBlock() {
               <div className="other-possibility-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/><path d="M9 10h.01"/><path d="M15 10h.01"/></svg>
               </div>
-              <YouTubeEmbed {...OTHER_POSSIBILITIES_MEDIA.realEstate} />
+              <VideoEmbed {...OTHER_POSSIBILITIES_MEDIA.realEstate} />
               <h3 data-i18n="other_possibilities_real_estate_title"></h3>
               <p data-i18n="other_possibilities_real_estate_description"></p>
               <ul className="other-possibility-card__prompts">
@@ -328,7 +361,7 @@ function OtherPossibilitiesBlock() {
               <div className="other-possibility-card__icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></svg>
               </div>
-              <YouTubeEmbed {...OTHER_POSSIBILITIES_MEDIA.inventory} />
+              <VideoEmbed {...OTHER_POSSIBILITIES_MEDIA.inventory} />
               <h3 data-i18n="other_possibilities_inventory_title"></h3>
               <p data-i18n="other_possibilities_inventory_description"></p>
               <ul className="other-possibility-card__prompts">
