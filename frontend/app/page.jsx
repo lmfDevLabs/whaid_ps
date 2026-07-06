@@ -2,6 +2,7 @@
 
 import FooterSocialLinks from "../components/FooterSocialLinks";
 import SiteNav from "../components/SiteNav";
+import WhatsAppFloatingBadge from "../components/WhatsAppFloatingBadge";
 import { useEffect, useMemo, useState } from "react";
 
 const PRICING_LOGO_BASE_PATH = "/assets/logos_servicios";
@@ -991,6 +992,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <WhatsAppFloatingBadge />
 
       {/* FOOTER */}
       <footer className="footer">
