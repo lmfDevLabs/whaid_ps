@@ -1156,25 +1156,30 @@
 
 .usecase__stat {
   display: flex;
-  align-items: baseline;
-  gap: 12px;
+  align-items: center;
+  gap: 16px;
   padding-top: 20px;
   border-top: 1px solid var(--border);
 }
 [data-theme="dark"] .usecase__stat { border-top-color: var(--c-line-dark); }
 .usecase__stat-num {
+  flex: 0 0 auto;
   font-family: var(--font-display);
   font-size: 48px;
   color: var(--c-green);
-  line-height: 1;
+  line-height: 0.95;
+  margin: 0;
 }
 [data-theme="dark"] .usecase__stat-num { color: var(--c-lime); }
 .usecase__stat-txt {
+  display: block;
   font-size: 13px;
   color: var(--text-muted);
-  max-width: 200px;
+  max-width: 210px;
   line-height: 1.4;
   font-weight: 300;
+  margin: 0;
+  padding: 0;
 }
 
 /* Usecase visual — asset grid mock */
@@ -1246,6 +1251,16 @@
   }
 
   .usecase > * { min-width: 0; }
+
+  .usecase__stat {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .usecase__stat-txt {
+    max-width: 260px;
+  }
 
   .usecase__visual {
     width: 100%;
