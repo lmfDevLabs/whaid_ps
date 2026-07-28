@@ -3,19 +3,13 @@ export const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || "https://whaid.co").
 export const socialLinks = [
   {
     name: "Instagram",
-    href: "https://www.instagram.com/whaid.co/",
+    href: "https://www.instagram.com/whaidrag/",
     ariaLabel: "Instagram de Whaid",
     icon: "instagram",
   },
   {
-    name: "X",
-    href: "https://x.com/whaid_co",
-    ariaLabel: "X de Whaid",
-    icon: "x",
-  },
-  {
     name: "YouTube",
-    href: "https://www.youtube.com/@whaid",
+    href: "https://www.youtube.com/@whaid_rag",
     ariaLabel: "YouTube de Whaid",
     icon: "youtube",
   },
