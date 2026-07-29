@@ -1,5 +1,5 @@
-import FooterSocialLinks from "../../components/FooterSocialLinks";
-import SiteNav from "../../components/SiteNav";
+import SiteFooter from "../../components/layout/SiteFooter";
+import SiteNav from "../../components/layout/SiteNav";
 import {fetchPublishedPosts} from "../../lib/blogApi";
 import ImageWithFallback from "../../components/blog/ImageWithFallback";
 
@@ -11,12 +11,6 @@ const formatDate = (value) => {
   if (Number.isNaN(date.getTime())) return "";
   return new Intl.DateTimeFormat("es", {day: "2-digit", month: "short", year: "numeric"}).format(date).toUpperCase();
 };
-
-function Footer() {
-  return (
-    <footer className="footer"><div className="container"><div className="footer__grid"><div><div className="footer__logo"><img src="/assets/whaid-logo.png" alt="Whaid" /></div><p className="footer__tag" data-i18n="footer_tagline">El asistente IA que responde por tus activos — desde WhatsApp.</p></div><div className="footer__col"><h4 data-i18n="footer_product">Producto</h4><ul><li><a href="/#keyshots">Capacidades</a></li><li><a href="/#usecases">Casos de uso</a></li><li><a href="#">Integraciones</a></li><li><a href="#">Seguridad</a></li><li><a href="#">Pricing</a></li></ul></div><div className="footer__col"><h4 data-i18n="footer_company">Compañía</h4><ul><li><a href="/blog">Blog</a></li><li><a href="#">Sobre nosotros</a></li><li><a href="#">Contacto</a></li><li><a href="#">Careers</a></li></ul></div><div className="footer__col"><h4 data-i18n="footer_legal">Legal</h4><ul><li><a href="#">Privacidad</a></li><li><a href="#">Términos</a></li><li><a href="#">Cookies</a></li><li><a href="#">DPA</a></li></ul></div></div><div className="footer__bottom"><span className="footer__copy" data-i18n="footer_copy">© 2026 Whaid. Hecho con cuidado en LatAm.</span><FooterSocialLinks /></div></div></footer>
-  );
-}
 
 function CardInner({post}) {
   const tag = post.tags?.[0] || "Whaid";
@@ -74,7 +68,7 @@ export default async function BlogPage() {
       ) : null}
 
       <section className="posts-section"><div className="container"><div className="posts-grid" id="posts-grid">{gridPosts.map((post) => <BlogCard post={post} key={post.id} />)}</div></div></section>
-      <Footer />
+      <SiteFooter />
     </>
   );
 }
