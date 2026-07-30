@@ -1,9 +1,11 @@
 "use client";
 
 import {useState} from "react";
+import useLanguage from "../../../i18n/useLanguage";
 
 // Browser image errors select the existing textual logo fallback.
 export default function PricingServiceLogo({ src, fallback, nameKey }) {
+  const {t} = useLanguage();
   const [hasLogoError, setHasLogoError] = useState(false);
 
   return (
@@ -15,7 +17,7 @@ export default function PricingServiceLogo({ src, fallback, nameKey }) {
           className="pricing-card__logo"
           src={src}
           alt=""
-          data-i18n-title={nameKey}
+          title={t(nameKey)}
           onError={() => setHasLogoError(true)}
         />
       )}

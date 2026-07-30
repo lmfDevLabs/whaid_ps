@@ -1,11 +1,12 @@
+import TranslatedText from "../../../i18n/TranslatedText";
 export default function PitchSection() {
   return (
       <section className="video-pitch" id="pitch" aria-label="Video pitch">
         <div className="container video-pitch__inner">
           <div className="video-pitch__copy">
-            <span className="eyebrow video-pitch__eyebrow" data-i18n="pitch_eyebrow">Pitch · 90 segundos</span>
-            <h3 data-i18n="pitch_title">Whaid en menos de lo que dura un café.</h3>
-            <p data-i18n="pitch_sub">Mira a Whaid resolver un caso real — del WhatsApp del operador a la respuesta verificada.</p>
+            <span className="eyebrow video-pitch__eyebrow"><TranslatedText i18nKey="pitch_eyebrow" /></span>
+            <h3><TranslatedText i18nKey="pitch_title" /></h3>
+            <p><TranslatedText i18nKey="pitch_sub" /></p>
           </div>
           <a className="video-pitch__player" href="#" data-pitch="youtube" aria-label="Reproducir video pitch de Whaid">
             <div className="video-pitch__thumb">
@@ -18,7 +19,7 @@ export default function PitchSection() {
               <span className="video-pitch__play" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="8,5 20,12 8,19"/></svg>
               </span>
-              <span className="video-pitch__caption" data-i18n="pitch_caption">Reproducir pitch oficial</span>
+              <span className="video-pitch__caption"><TranslatedText i18nKey="pitch_caption" /></span>
             </div>
           </a>
         </div>

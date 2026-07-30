@@ -1,3 +1,4 @@
+import TranslatedText from "../../i18n/TranslatedText";
 import SiteFooter from "../layout/SiteFooter";
 import SiteNav from "../layout/SiteNav";
 import {siteUrl} from "../../lib/siteLinks";
@@ -17,7 +18,7 @@ const formatDate = (value) => {
 const readingTime = (content) => {
   const words = String(content || "").trim().split(/\s+/).filter(Boolean).length;
   if (!words) return "";
-  return `${Math.max(1, Math.ceil(words / 220))} min de lectura`;
+  return Math.max(1, Math.ceil(words / 220));
 };
 
 export default function PostTemplate({post, slug}) {
@@ -46,14 +47,14 @@ export default function PostTemplate({post, slug}) {
         <div className="post-header__inner">
           <a href="/blog" className="post-back">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-            <span data-i18n="back_to_blog">Volver al blog</span>
+            <span><TranslatedText i18nKey="back_to_blog" /></span>
           </a>
 
           <div className="post-meta">
             <PostTags tags={post?.tags} className="post-tags post-tags--inline" />
             {date ? <span>{date}</span> : null}
             {date && readTime ? <span className="dot-sep" /> : null}
-            {readTime ? <span>{readTime}</span> : null}
+            {readTime ? <span>{readTime} <TranslatedText i18nKey="min_read" /></span> : null}
           </div>
 
           <h1 className="post-title">{post?.title || "Post de Whaid"}</h1>
@@ -79,12 +80,12 @@ export default function PostTemplate({post, slug}) {
 
       <div className="post-footer">
         <div className="post-share" aria-label="Compartir artículo">
-          <span className="post-share__label">Compartir artículo</span>
+          <span className="post-share__label"><TranslatedText i18nKey="share" /></span>
           {shareLinks.map((link) => (
             <a key={link.name} href={link.href} aria-label={link.ariaLabel} target="_blank" rel="noopener noreferrer">{link.name}</a>
           ))}
         </div>
-        <a href="/#demo" className="btn btn--primary">Agendar demo</a>
+        <a href="/#demo" className="btn btn--primary"><TranslatedText i18nKey="nav_cta" /></a>
       </div>
       <SiteFooter />
     </>

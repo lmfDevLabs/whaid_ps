@@ -1,6 +1,10 @@
+"use client";
+
+import useLanguage from "../../../i18n/useLanguage";
 import {getVideoSourceType, getYouTubeEmbedUrl} from "../../../lib/media/youtube";
 
 export default function VideoEmbed({ videoUrl, titleKey }) {
+  const {t} = useLanguage();
   const videoType = getVideoSourceType(videoUrl);
   const embedUrl = videoType === "youtube" ? getYouTubeEmbedUrl(videoUrl) : "";
 
@@ -9,8 +13,7 @@ export default function VideoEmbed({ videoUrl, titleKey }) {
       {videoType === "youtube" && embedUrl ? (
         <iframe
           src={embedUrl}
-          title={titleKey || "Whaid video"}
-          data-i18n-title={titleKey}
+          title={titleKey ? t(titleKey) : "Whaid video"}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
           referrerPolicy="strict-origin-when-cross-origin"
           allowFullScreen
@@ -22,8 +25,7 @@ export default function VideoEmbed({ videoUrl, titleKey }) {
           controls
           playsInline
           preload="metadata"
-          title={titleKey || "Whaid video"}
-          data-i18n-title={titleKey}
+          title={titleKey ? t(titleKey) : "Whaid video"}
         >
           <source src={videoUrl} type="video/mp4" />
           Tu navegador no soporta la reproducción de video.

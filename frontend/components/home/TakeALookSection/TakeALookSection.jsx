@@ -1,14 +1,15 @@
+import TranslatedText from "../../../i18n/TranslatedText";
 import WhaidVisualResponseCard from "../WhaidVisualResponseCard";
 
 export default function TakeALookSection() {
   return (
       <section className="takelook" id="takelook">
         <div className="section__head reveal" style={{color: "#fff"}}>
-          <span className="eyebrow" style={{color: "var(--c-lime)"}} data-i18n="takelook_eyebrow">Take a look</span>
+          <span className="eyebrow" style={{color: "var(--c-lime)"}}><TranslatedText i18nKey="takelook_eyebrow" /></span>
           <h2 style={{color: "#fff"}}>
-            <span data-i18n="takelook_title_a">Un vistazo a </span><span className="accent" data-i18n="takelook_title_b">Whaid operando</span><span data-i18n="takelook_title_c">.</span>
+            <span><TranslatedText i18nKey="takelook_title_a" /></span><span className="accent"><TranslatedText i18nKey="takelook_title_b" /></span><span><TranslatedText i18nKey="takelook_title_c" /></span>
           </h2>
-          <p style={{color: "var(--c-muted-dark)"}} data-i18n="takelook_sub">Así se ve una conversación real entre un operador de feria y Whaid — resolviendo un caso en segundos.</p>
+          <p style={{color: "var(--c-muted-dark)"}}><TranslatedText i18nKey="takelook_sub" /></p>
         </div>
 
         <div className="takelook__showcase">

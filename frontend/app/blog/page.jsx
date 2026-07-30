@@ -1,3 +1,4 @@
+import TranslatedText from "../../i18n/TranslatedText";
 import SiteFooter from "../../components/layout/SiteFooter";
 import SiteNav from "../../components/layout/SiteNav";
 import {fetchPublishedPosts} from "../../lib/blogApi";
@@ -55,13 +56,13 @@ export default async function BlogPage() {
   return (
     <>
       <SiteNav activeItem="blog" demoHref="/#demo" />
-      <header className="blog-hero"><div className="blog-hero__inner"><div><span className="eyebrow" data-i18n="blog_eyebrow">Journal</span><h1><span data-i18n="blog_title_a">Ideas sobre IA, operaciones y </span><span className="accent" data-i18n="blog_title_b">conversación</span><span data-i18n="blog_title_c">.</span></h1></div><p data-i18n="blog_sub">Ensayos, casos de estudio y notas técnicas del equipo de Whaid.</p></div></header>
+      <header className="blog-hero"><div className="blog-hero__inner"><div><span className="eyebrow"><TranslatedText i18nKey="blog_eyebrow" /></span><h1><span><TranslatedText i18nKey="blog_title_a" /></span><span className="accent"><TranslatedText i18nKey="blog_title_b" /></span><span><TranslatedText i18nKey="blog_title_c" /></span></h1></div><p><TranslatedText i18nKey="blog_sub" /></p></div></header>
       <div className="blog-tags" role="tablist" aria-label="Filtrar por categoría"><button className="blog-tag is-active" data-tag="all">Todos</button><button className="blog-tag" data-tag="producto">Producto</button><button className="blog-tag" data-tag="ia">IA &amp; LLMs</button><button className="blog-tag" data-tag="casos">Casos de estudio</button><button className="blog-tag" data-tag="ingenieria">Ingeniería</button><button className="blog-tag" data-tag="operaciones">Operaciones</button></div>
 
       {featured ? (
         <section className="featured-post reveal">
           <a href={getPostHref(featured)} className="featured-post__card" style={{color: "inherit", textDecoration: "none"}}>
-            <div><span className="featured-post__label">Destacado</span><h2 className="featured-post__title">{featured.title || "Post de Whaid"}</h2>{featured.excerpt ? <p className="featured-post__excerpt">{featured.excerpt}</p> : null}<div className="featured-post__meta">{featured.author ? <span>{featured.author}</span> : null}{featured.published_at ? <><span className="dot-sep"/><span>{formatDate(featured.published_at)}</span></> : null}</div></div>
+            <div><span className="featured-post__label"><TranslatedText i18nKey="featured" /></span><h2 className="featured-post__title">{featured.title || "Post de Whaid"}</h2>{featured.excerpt ? <p className="featured-post__excerpt">{featured.excerpt}</p> : null}<div className="featured-post__meta">{featured.author ? <span>{featured.author}</span> : null}{featured.published_at ? <><span className="dot-sep"/><span>{formatDate(featured.published_at)}</span></> : null}</div></div>
             <div className="featured-post__visual"><ImageWithFallback src={featured.cover_image_url} alt={featured.title || "Imagen destacada"} className="featured-post__visual-img" /></div>
           </a>
         </section>
