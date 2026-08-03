@@ -1,3 +1,4 @@
+import TranslatedText from "../../../i18n/TranslatedText";
 import {SECURITY_CARDS} from "./security.data";
 
 export default function SecuritySection() {
@@ -12,10 +13,10 @@ export default function SecuritySection() {
                 <path d="M9.5 12.5l1.8 1.8 3.7-5" />
               </svg>
             </div>
-            <span className="security-card__badge" data-i18n="security_badge"></span>
-            <h2 id="security-title" data-i18n="security_title"></h2>
-            <p className="security-card__subtitle" data-i18n="security_subtitle"></p>
-            <p className="security-card__text" data-i18n="security_text"></p>
+            <span className="security-card__badge"><TranslatedText i18nKey="security_badge" /></span>
+            <h2 id="security-title"><TranslatedText i18nKey="security_title" /></h2>
+            <p className="security-card__subtitle"><TranslatedText i18nKey="security_subtitle" /></p>
+            <p className="security-card__text"><TranslatedText i18nKey="security_text" /></p>
           </div>
 
           <div className="security-card__grid" aria-label="Security controls">
@@ -23,8 +24,8 @@ export default function SecuritySection() {
               <article className="security-mini" key={card.id}>
                 <span className="security-mini__icon">{card.icon}</span>
                 <div>
-                  <h3 data-i18n={card.titleKey}></h3>
-                  <p data-i18n={card.textKey}></p>
+                  <h3><TranslatedText i18nKey={card.titleKey} /></h3>
+                  <p><TranslatedText i18nKey={card.textKey} /></p>
                 </div>
               </article>
             ))}

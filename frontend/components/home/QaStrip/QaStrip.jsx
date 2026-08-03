@@ -1,26 +1,13 @@
 "use client";
 
 import {useEffect, useMemo, useState} from "react";
+import useLanguage from "../../../i18n/useLanguage";
 
-// The current bilingual QA copy is exposed by site.js and changes through DOM attributes.
 export default function QaStrip() {
-  const [qaCopy, setQaCopy] = useState(null);
+  const {dictionary} = useLanguage();
+  const qaCopy = dictionary.qa_strip;
   const [activeQaTab, setActiveQaTab] = useState(null);
   const [activeQaItem, setActiveQaItem] = useState(null);
-
-  useEffect(() => {
-    const syncQaCopy = () => {
-      const lang = document.documentElement.getAttribute("data-lang") || localStorage.getItem("whaid:lang") || "es";
-      const copy = window.WHAID_SITE?.[lang]?.qaStrip || window.WHAID_SITE?.es?.qaStrip || null;
-      setQaCopy(copy);
-    };
-
-    syncQaCopy();
-    const observer = new MutationObserver(syncQaCopy);
-    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-lang"] });
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     const firstTabId = qaCopy?.tabs?.[0]?.id || null;

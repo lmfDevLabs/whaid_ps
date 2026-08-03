@@ -1,4 +1,5 @@
 import Script from "next/script";
+import LanguageProvider from "../i18n/LanguageProvider";
 
 import "../styles/globals.css";
 import "../styles/styles.css";
@@ -19,7 +20,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" data-theme="light">
       <body>
-        {children}
+        <LanguageProvider>{children}</LanguageProvider>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YEFM85QX6V"
           strategy="afterInteractive"

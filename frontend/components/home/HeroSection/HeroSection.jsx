@@ -1,3 +1,4 @@
+import TranslatedText from "../../../i18n/TranslatedText";
 import WhaidVisualResponseCard from "../WhaidVisualResponseCard";
 
 export default function HeroSection() {
@@ -5,21 +6,19 @@ export default function HeroSection() {
       <header className="hero">
         <div className="hero__inner">
           <div>
-            <span className="hero__eyebrow" data-i18n="hero_eyebrow">Asistente IA en WhatsApp para tus eventos y recintos</span>
+            <span className="hero__eyebrow"><TranslatedText i18nKey="hero_eyebrow" /></span>
             <h1>
-              <span data-i18n="hero_title_a">Haz parte a los visitantes</span><span className="accent" data-i18n="hero_title_b">de tus eventos</span><span data-i18n="hero_title_c"> a un WhatsApp de distancia.</span>
+              <span><TranslatedText i18nKey="hero_title_a" /></span><span className="accent"><TranslatedText i18nKey="hero_title_b" /></span><span><TranslatedText i18nKey="hero_title_c" /></span>
             </h1>
-            <p className="hero__lead" data-i18n="hero_sub">
-              Whaid es el asistente conversacional que conencta tu evento o recinto con tus visitantes, en tiempo real y sin salir de WhatsApp.
-            </p>
+            <p className="hero__lead"><TranslatedText i18nKey="hero_sub" /></p>
             <div className="hero__ctas">
               <a href="#demo" className="btn btn--primary btn--lg">
-                <span data-i18n="hero_cta_primary">Agendar demo</span>
+                <span><TranslatedText i18nKey="hero_cta_primary" /></span>
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
               <a href="#takelook" className="btn btn--ghost btn--lg" style={{color: "#fff", borderColor: "var(--c-line-dark)"}}>
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg>
-                <span data-i18n="hero_cta_secondary">Ver cómo funciona</span>
+                <span><TranslatedText i18nKey="hero_cta_secondary" /></span>
               </a>
             </div>
 
