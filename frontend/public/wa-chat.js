@@ -178,6 +178,10 @@ const TAKELOOK_SCRIPT_EN = [
   },
 ];
 
+function getLang() {
+  return document.documentElement.dataset.lang === 'en' ? 'en' : 'es';
+}
+
 function appendMsg(body, m) {
   const el = document.createElement('div');
   el.className = 'wa-msg ' + (m.t === 'in' ? 'wa-msg--in' : 'wa-msg--out');
@@ -261,7 +265,6 @@ function initWAChat() {
   const heroPanel = document.getElementById('web-panel-hero');
 
   const runAll = async () => {
-    const lang = getLang();
     if (heroBody) {
       const loop = async () => {
         await wait(600);
