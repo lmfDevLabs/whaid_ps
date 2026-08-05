@@ -2,7 +2,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "lint": "node scripts/lint.mjs",
+    "validate:i18n": "node scripts/validate-translations.mjs",
+    "check": "npm run validate:i18n && npm run lint && npm run build"
   },
   "dependencies": {
     "next": "16.2.5",
