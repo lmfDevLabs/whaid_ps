@@ -1,5 +1,13 @@
-/* Home cascade entry point. Keep imports in this order. */
-@import "./home/base.css";
+/* Home cascade entry point. Keep imports in this order to preserve the legacy cascade. */
+@import "./home/hero.css";
+@import "./home/qa-strip.css";
+@import "./home/pitch.css";
+@import "./home/sections.css";
+@import "./home/keyshots.css";
+@import "./home/use-cases.css";
+@import "./home/contact.css";
+@import "./home/information-types.css";
+@import "./home/take-a-look.css";
 @import "./home/other-possibilities.css";
 @import "./home/pricing.css";
 @import "./home/security.css";

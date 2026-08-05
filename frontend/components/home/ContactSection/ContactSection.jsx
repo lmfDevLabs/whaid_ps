@@ -1,17 +1,16 @@
 "use client";
 
+import {useState} from "react";
 import TranslatedText from "../../../i18n/TranslatedText";
 
-// The submit feedback mutates the submitted button, so this is intentionally a small client boundary.
-function handleDemoSubmit(event) {
-  event.preventDefault();
-  const button = event.currentTarget.querySelector(".form-submit");
-  button.innerHTML = "✓ Solicitud enviada";
-  button.style.background = "#18a758";
-  button.style.color = "#fff";
-}
-
 export default function ContactSection() {
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  function handleDemoSubmit(event) {
+    event.preventDefault();
+    setIsSubmitted(true);
+  }
+
   return (
       <section className="section" id="demo">
         <div className="demo reveal">
@@ -56,9 +55,15 @@ export default function ContactSection() {
                 </select>
               </div>
             </div>
-            <button type="submit" className="form-submit">
-              <span><TranslatedText i18nKey="form_submit" /></span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            <button type="submit" className={`form-submit${isSubmitted ? " form-submit--success" : ""}`}>
+              {isSubmitted ? (
+                <span>✓ Solicitud enviada</span>
+              ) : (
+                <>
+                  <span><TranslatedText i18nKey="form_submit" /></span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </>
+              )}
             </button>
             <p className="form-disclaimer"><TranslatedText i18nKey="form_disclaimer" /></p>
           </form>
