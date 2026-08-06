@@ -5,8 +5,8 @@
 /* ---------- HERO ---------- */
 .hero {
   position: relative;
-  background: var(--c-ink);
-  color: var(--c-white);
+  background: var(--bg-alt);
+  color: var(--text);
   overflow: hidden;
   padding: 88px 0 120px;
 }
@@ -60,7 +60,7 @@
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--c-lime);
+  color: var(--c-green-deep);
   margin-bottom: 28px;
 }
 .hero__eyebrow::before {
@@ -82,7 +82,7 @@
   line-height: 1.03;
   letter-spacing: -1.2px;
   margin: 0 0 28px;
-  color: var(--c-white);
+  color: var(--text);
 }
 .hero h1 .accent {
   font-style: italic;
@@ -108,7 +108,7 @@
   font-size: 19px;
   line-height: 1.6;
   font-weight: 300;
-  color: var(--c-muted-dark);
+  color: var(--text-muted);
   max-width: 540px;
   margin: 0 0 40px;
 }
@@ -136,13 +136,21 @@
   font-size: 10px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--c-muted-dark);
+  color: var(--text-dim);
 }
 .hero__meta-v {
   font-family: var(--font-display);
   font-size: 28px;
-  color: var(--c-white);
+  color: var(--text);
 }
+.hero__secondary-cta { color: var(--text); border-color: var(--border); }
+[data-theme="dark"] .hero { background: var(--c-ink); color: var(--c-white); }
+[data-theme="dark"] .hero__eyebrow { color: var(--c-lime); }
+[data-theme="dark"] .hero h1,
+[data-theme="dark"] .hero__meta-v { color: var(--c-white); }
+[data-theme="dark"] .hero__lead,
+[data-theme="dark"] .hero__meta-k { color: var(--c-muted-dark); }
+[data-theme="dark"] .hero__secondary-cta { color: var(--c-white); border-color: var(--c-line-dark); }
 .hero__meta-v .dot { color: var(--c-lime); }
 
 /* ---------- WhatsApp chat mock ---------- */

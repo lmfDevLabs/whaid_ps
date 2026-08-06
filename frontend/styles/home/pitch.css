@@ -1,8 +1,8 @@
 /* ---------- Video Pitch (compact, after hero) ---------- */
 .video-pitch {
-  background: var(--c-ink);
+  background: var(--bg);
   padding: 56px 0 72px;
-  border-top: 1px solid var(--c-line-dark);
+  border-top: 1px solid var(--border);
   position: relative;
 }
 .video-pitch::before {
@@ -22,9 +22,9 @@
 @media (max-width: 880px) {
   .video-pitch__inner { grid-template-columns: 1fr; gap: 28px; }
 }
-.video-pitch__copy { color: #fff; }
+.video-pitch__copy { color: var(--text); }
 .video-pitch__eyebrow {
-  color: var(--c-lime);
+  color: var(--c-green-deep);
   margin-bottom: 14px;
   display: inline-block;
 }
@@ -35,16 +35,21 @@
   line-height: 1.15;
   letter-spacing: -0.3px;
   margin: 0 0 12px;
-  color: #fff;
+  color: var(--text);
 }
 .video-pitch__copy p {
   font-size: 15px;
   line-height: 1.55;
-  color: var(--c-muted-dark);
+  color: var(--text-muted);
   font-weight: 300;
   margin: 0;
   max-width: 380px;
 }
+[data-theme="dark"] .video-pitch { background: var(--c-ink); border-top-color: var(--c-line-dark); }
+[data-theme="dark"] .video-pitch__copy { color: var(--c-white); }
+[data-theme="dark"] .video-pitch__eyebrow { color: var(--c-lime); }
+[data-theme="dark"] .video-pitch__copy h3 { color: var(--c-white); }
+[data-theme="dark"] .video-pitch__copy p { color: var(--c-muted-dark); }
 
 .video-pitch__player {
   display: block;

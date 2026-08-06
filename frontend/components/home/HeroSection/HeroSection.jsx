@@ -16,7 +16,7 @@ export default function HeroSection() {
                 <span><TranslatedText i18nKey="hero_cta_primary" /></span>
                 <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
-              <a href="#takelook" className="btn btn--ghost btn--lg" style={{color: "#fff", borderColor: "var(--c-line-dark)"}}>
+              <a href="#takelook" className="btn btn--ghost btn--lg hero__secondary-cta">
                 <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><polygon points="7,4 20,12 7,20"/></svg>
                 <span><TranslatedText i18nKey="hero_cta_secondary" /></span>
               </a>
