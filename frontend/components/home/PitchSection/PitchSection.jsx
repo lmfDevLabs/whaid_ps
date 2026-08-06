@@ -3,7 +3,7 @@
 import {useState} from "react";
 import TranslatedText from "../../../i18n/TranslatedText";
 
-const VIDEO_ID = "wxwoSewiKwQ";
+const VIDEO_ID = "IIC_IQg7rD8";
 const MAX_RES_THUMBNAIL = `https://i.ytimg.com/vi/${VIDEO_ID}/maxresdefault.jpg`;
 const FALLBACK_THUMBNAIL = `https://i.ytimg.com/vi/${VIDEO_ID}/hqdefault.jpg`;
 
