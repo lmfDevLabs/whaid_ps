@@ -4,12 +4,12 @@ import WhaidVisualResponseCard from "../WhaidVisualResponseCard";
 export default function TakeALookSection() {
   return (
       <section className="takelook" id="takelook">
-        <div className="section__head reveal" style={{color: "#fff"}}>
-          <span className="eyebrow" style={{color: "var(--c-lime)"}}><TranslatedText i18nKey="takelook_eyebrow" /></span>
-          <h2 style={{color: "#fff"}}>
+        <div className="section__head reveal">
+          <span className="eyebrow"><TranslatedText i18nKey="takelook_eyebrow" /></span>
+          <h2>
             <span><TranslatedText i18nKey="takelook_title_a" /></span><span className="accent"><TranslatedText i18nKey="takelook_title_b" /></span><span><TranslatedText i18nKey="takelook_title_c" /></span>
           </h2>
-          <p style={{color: "var(--c-muted-dark)"}}><TranslatedText i18nKey="takelook_sub" /></p>
+          <p><TranslatedText i18nKey="takelook_sub" /></p>
         </div>
 
         <div className="takelook__showcase">

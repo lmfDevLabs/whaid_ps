@@ -1,8 +1,8 @@
 /* ---------- Take a look: big chat demo ---------- */
 .takelook {
   padding: 96px 0 120px;
-  background: var(--c-ink);
-  color: #fff;
+  background: var(--bg-alt);
+  color: var(--text);
   position: relative;
   overflow: hidden;
 }
@@ -34,7 +34,7 @@
 .takelook__notes { }
 .takelook__note {
   padding: 24px 0;
-  border-bottom: 1px solid var(--c-line-dark);
+  border-bottom: 1px solid var(--border);
 }
 .takelook__note:last-child { border-bottom: 0; }
 .takelook__note-label {
@@ -42,7 +42,7 @@
   font-weight: 600;
   font-size: 11px;
   letter-spacing: 2px;
-  color: var(--c-lime);
+  color: var(--c-green-deep);
   text-transform: uppercase;
   margin-bottom: 8px;
 }
@@ -52,13 +52,17 @@
   font-size: 22px;
   margin: 0 0 6px;
   line-height: 1.2;
-  color: #fff;
+  color: var(--text);
 }
 .takelook__note p {
   font-size: 14px;
   line-height: 1.55;
-  color: var(--c-muted-dark);
+  color: var(--text-muted);
   font-weight: 300;
   margin: 0;
 }
-
+[data-theme="dark"] .takelook { background: var(--c-ink); color: var(--c-white); }
+[data-theme="dark"] .takelook__note { border-bottom-color: var(--c-line-dark); }
+[data-theme="dark"] .takelook__note-label { color: var(--c-lime); }
+[data-theme="dark"] .takelook__note h4 { color: var(--c-white); }
+[data-theme="dark"] .takelook__note p { color: var(--c-muted-dark); }

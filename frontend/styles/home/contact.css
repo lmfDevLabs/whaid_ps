@@ -3,8 +3,9 @@
   overflow-x: hidden;
 }
 .demo {
-  background: var(--c-ink);
-  color: #fff;
+  background: var(--bg-alt);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-radius: 40px;
   padding: 72px;
   margin: 0 32px;
@@ -56,13 +57,13 @@
   font-weight: 400;
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.1;
-  color: #fff;
+  color: var(--text);
   margin: 0 0 16px;
   letter-spacing: -0.5px;
 }
 .demo__content p {
   font-size: 17px;
-  color: var(--c-muted-dark);
+  color: var(--text-muted);
   font-weight: 300;
   line-height: 1.6;
   margin: 0 0 32px;
@@ -79,7 +80,7 @@
   align-items: center;
   gap: 12px;
   font-size: 15px;
-  color: #fff;
+  color: var(--text);
   font-weight: 300;
 }
 .demo__content li svg {
@@ -88,8 +89,8 @@
   width: 18px; height: 18px;
 }
 .demo__form {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--c-line-dark);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 24px;
   padding: 32px;
   position: relative;
@@ -118,11 +119,11 @@
 }
 .form-group input,
 .form-group select {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--c-line-dark);
+  background: var(--c-paper);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 14px 16px;
-  color: #fff;
+  color: var(--text);
   font-family: var(--font-body);
   font-size: 15px;
   font-weight: 300;
@@ -163,10 +164,18 @@
 .form-disclaimer {
   margin-top: 16px;
   font-size: 12px;
-  color: var(--c-muted-dark);
+  color: var(--text-muted);
   text-align: center;
   font-weight: 300;
 }
+[data-theme="dark"] .demo { background: var(--c-ink); color: var(--c-white); border-color: var(--c-line-dark); }
+[data-theme="dark"] .demo__content h2,
+[data-theme="dark"] .demo__content li { color: var(--c-white); }
+[data-theme="dark"] .demo__content p,
+[data-theme="dark"] .form-disclaimer { color: var(--c-muted-dark); }
+[data-theme="dark"] .demo__form { background: rgba(255,255,255,0.04); border-color: var(--c-line-dark); }
+[data-theme="dark"] .form-group input,
+[data-theme="dark"] .form-group select { background: rgba(255,255,255,0.03); border-color: var(--c-line-dark); color: var(--c-white); }
 @media (max-width: 640px) {
   .demo__form {
     padding: 24px 18px;
