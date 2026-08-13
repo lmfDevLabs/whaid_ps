@@ -120,6 +120,8 @@
 .menu-toggle svg { width: 18px; }
 
 @media (max-width: 920px) {
+  .nav__inner { gap: 12px; }
+  .nav__actions { margin-left: auto; }
   .nav__links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 1px solid var(--border); flex-direction: column; padding: 12px 24px 20px; gap: 6px; margin: 0; }
   .nav__links.is-open { display: flex; }
   .nav__links a { padding: 12px 0; font-size: 16px; border-bottom: 1px solid var(--border); }
@@ -139,8 +141,14 @@
   }
   .nav__links .nav__mobile-cta::after { display: none; }
   .nav__desktop-cta { display: none; }
-  .menu-toggle { display: inline-flex; }
+  .menu-toggle { display: inline-flex; width: 44px; height: 44px; flex: 0 0 44px; }
   .nav__cta-label { display: none; }
+}
+
+@media (max-width: 420px) {
+  .nav__inner { padding-inline: 16px; gap: 8px; }
+  .nav__actions { gap: 6px; }
+  .chip-btn { min-width: 38px; padding-inline: 9px; justify-content: center; }
 }
 
 /* ---------- Footer ---------- */
