@@ -1,5 +1,6 @@
 import Script from "next/script";
 import LanguageProvider from "../i18n/LanguageProvider";
+import WhatsAppFloatingBadge from "../components/layout/WhatsAppFloatingBadge";
 
 import "../styles/globals.css";
 import "../styles/styles.css";
@@ -20,7 +21,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" data-theme="light">
       <body>
-        <LanguageProvider>{children}</LanguageProvider>
+        <LanguageProvider>
+          {children}
+          <WhatsAppFloatingBadge />
+        </LanguageProvider>
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-YEFM85QX6V"
           strategy="afterInteractive"
