@@ -11,7 +11,6 @@ import TakeALookSection from "../components/home/TakeALookSection/TakeALookSecti
 import UseCasesSection from "../components/home/UseCasesSection/UseCasesSection";
 import SiteFooter from "../components/layout/SiteFooter";
 import SiteNav from "../components/layout/SiteNav";
-import WhatsAppFloatingBadge from "../components/layout/WhatsAppFloatingBadge";
 
 export default function HomePage() {
   return (
@@ -30,7 +29,6 @@ export default function HomePage() {
         <InformationTypesSection />
         <TakeALookSection />
       </main>
-      <WhatsAppFloatingBadge />
       <SiteFooter />
     </>
   );
