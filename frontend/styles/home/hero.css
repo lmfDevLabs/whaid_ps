@@ -43,7 +43,8 @@
   align-items: center;
 }
 @media (max-width: 1000px) {
-  .hero__inner { grid-template-columns: 1fr; gap: 48px; padding: 0 20px; }
+  .hero__inner { grid-template-columns: minmax(0, 1fr); gap: 48px; padding: 0 20px; }
+  .hero__inner > * { min-width: 0; }
   .hero { padding: 56px 0 80px; }
 }
 
@@ -102,6 +103,24 @@
 }
 @keyframes underline-in {
   to { transform: scaleX(1); }
+}
+
+@media (max-width: 640px) {
+  .hero h1 {
+    font-size: clamp(38px, 12.5vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.8px;
+  }
+
+  .hero h1 .accent {
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 2px;
+  }
+
+  .hero h1 .accent::after { display: none; }
 }
 
 .hero__lead {

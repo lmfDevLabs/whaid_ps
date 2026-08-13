@@ -37,3 +37,25 @@
 [data-theme="dark"] .section__head p,
 .section--dark .section__head p { color: var(--c-muted-dark); }
 
+@media (max-width: 640px) {
+  .section__head {
+    min-width: 0;
+    margin-bottom: 48px;
+  }
+
+  .section__head h2 {
+    font-size: clamp(32px, 10.5vw, 36px);
+    line-height: 1.15;
+    letter-spacing: -0.35px;
+  }
+
+  .section__head h2 .accent {
+    white-space: normal;
+    overflow-wrap: break-word;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 2px;
+  }
+
+  .section__head h2 .accent::after { display: none; }
+}
