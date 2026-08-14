@@ -32,15 +32,6 @@
     radial-gradient(circle at 8% 0%, rgba(189,255,0,0.14), transparent 34%);
   box-shadow: 0 34px 80px rgba(0,0,0,0.32);
 }
-.security-card::before {
-  content: '';
-  position: absolute;
-  inset: 14px;
-  border: 1px solid rgba(24,167,88,0.08);
-  border-radius: 26px;
-  pointer-events: none;
-}
-[data-theme="dark"] .security-card::before { border-color: rgba(189,255,0,0.10); }
 .security-card__content,
 .security-card__grid {
   position: relative;
@@ -173,7 +164,6 @@
 @media (max-width: 640px) {
   .section--security { padding: 58px 0; }
   .security-card { padding: 28px 20px; border-radius: 28px; }
-  .security-card::before { inset: 10px; border-radius: 22px; }
   .security-card__icon { width: 48px; height: 48px; border-radius: 16px; margin-bottom: 14px; }
   .security-card h2 { font-size: clamp(30px, 10vw, 38px); }
   .security-card__subtitle { font-size: 15px; line-height: 1.5; }
@@ -229,4 +219,3 @@
     font-size: 11px;
   }
 }
-

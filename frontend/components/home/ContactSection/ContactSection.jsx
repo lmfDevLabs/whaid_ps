@@ -12,7 +12,8 @@ export default function ContactSection() {
   }
 
   return (
-      <section className="section" id="demo">
+    <section className="section" id="demo">
+      <div className="container">
         <div className="demo reveal">
           <div className="demo__content">
             <span className="eyebrow"><TranslatedText i18nKey="form_eyebrow" /></span>
@@ -68,6 +69,7 @@ export default function ContactSection() {
             <p className="form-disclaimer"><TranslatedText i18nKey="form_disclaimer" /></p>
           </form>
         </div>
-      </section>
+      </div>
+    </section>
   );
 }
