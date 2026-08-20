@@ -2,19 +2,18 @@ import {socialLinks} from "../../lib/siteLinks";
 
 const iconPaths = {
   instagram: "M7.75 2h8.5A5.76 5.76 0 0 1 22 7.75v8.5A5.76 5.76 0 0 1 16.25 22h-8.5A5.76 5.76 0 0 1 2 16.25v-8.5A5.76 5.76 0 0 1 7.75 2Zm0 2A3.75 3.75 0 0 0 4 7.75v8.5A3.75 3.75 0 0 0 7.75 20h8.5A3.75 3.75 0 0 0 20 16.25v-8.5A3.75 3.75 0 0 0 16.25 4h-8.5ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-2.35a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2Z",
-  x: "M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117Z",
   youtube: "M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z",
   linkedin: "M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14M8.339 18.339v-8.68H5.666v8.68h2.673zM7.003 8.476c.858 0 1.554-.71 1.554-1.568a1.554 1.554 0 1 0-3.108 0c0 .858.696 1.568 1.554 1.568zm11.335 9.863v-4.757c0-2.317-.5-4.098-3.208-4.098-1.3 0-2.172.713-2.528 1.389h-.036v-1.174H9.998v8.64h2.673v-4.277c0-1.125.214-2.214 1.609-2.214 1.374 0 1.392 1.286 1.392 2.286v4.205h2.666z",
 };
 
-export default function FooterSocialLinks() {
+export default function SocialRail() {
   return (
-    <div className="footer__socials" aria-label="Redes sociales de Whaid">
+    <nav className="social-rail" aria-label="Redes sociales de Whaid">
       {socialLinks.map((link) => (
-        <a key={link.name} className="footer__social" href={link.href} aria-label={link.ariaLabel} target="_blank" rel="noopener noreferrer">
+        <a key={link.name} className="social-rail__link" href={link.href} aria-label={link.ariaLabel} target="_blank" rel="noopener noreferrer">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d={iconPaths[link.icon]} /></svg>
         </a>
       ))}
-    </div>
+    </nav>
   );
 }

@@ -1,6 +1,7 @@
 import Script from "next/script";
 import LanguageProvider from "../i18n/LanguageProvider";
 import WhatsAppFloatingBadge from "../components/layout/WhatsAppFloatingBadge";
+import SocialRail from "../components/layout/SocialRail";
 
 import "../styles/globals.css";
 import "../styles/styles.css";
@@ -23,6 +24,7 @@ export default function RootLayout({ children }) {
       <body>
         <LanguageProvider>
           {children}
+          <SocialRail />
           <WhatsAppFloatingBadge />
         </LanguageProvider>
         <Script
