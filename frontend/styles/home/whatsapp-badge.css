@@ -1,11 +1,11 @@
 /* ---------- Floating WhatsApp CTA ---------- */
 .whatsapp-floating-badge {
   position: fixed;
-  right: 24px;
-  bottom: max(24px, env(safe-area-inset-bottom));
+  right: var(--whatsapp-cta-edge-offset);
+  bottom: max(var(--whatsapp-cta-edge-offset), env(safe-area-inset-bottom));
   z-index: 40;
-  width: min(360px, calc(100vw - 48px));
-  min-height: 82px;
+  width: min(var(--whatsapp-cta-inline-size), calc(100vw - (2 * var(--whatsapp-cta-edge-offset))));
+  min-height: var(--whatsapp-cta-block-size);
   display: flex;
   align-items: center;
   gap: 16px;
@@ -73,10 +73,6 @@
 
 @media (max-width: 720px) {
   .whatsapp-floating-badge {
-    right: 16px;
-    bottom: max(16px, env(safe-area-inset-bottom));
-    width: min(320px, calc(100vw - 32px));
-    min-height: 70px;
     gap: 12px;
     padding: 10px 10px 10px 14px;
     border-radius: var(--r-m);
@@ -89,7 +85,10 @@
 }
 
 @media (max-width: 390px) {
-  .whatsapp-floating-badge { width: auto; max-width: calc(100vw - 32px); }
+  .whatsapp-floating-badge {
+    width: auto;
+    max-width: calc(100vw - (2 * var(--whatsapp-cta-edge-offset)));
+  }
   .whatsapp-floating-badge__copy strong { display: none; }
   .whatsapp-floating-badge__copy span { max-width: 170px; font-size: 11px; }
 }
