@@ -18,9 +18,23 @@ export const metadata = {
   },
 };
 
+const themeInitializationScript = `
+  try {
+    const storedTheme = window.localStorage.getItem("whaid:theme");
+    if (storedTheme === "light" || storedTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", storedTheme);
+    }
+  } catch (error) {
+    // Keep the dark default when storage is unavailable.
+  }
+`;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="es" data-theme="light">
+    <html lang="es" data-theme="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{__html: themeInitializationScript}} />
+      </head>
       <body>
         <LanguageProvider>
           {children}
