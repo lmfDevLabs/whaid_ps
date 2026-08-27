@@ -13,20 +13,23 @@ const HOME_NAV_LINKS = [
 
 export default function SiteNav({activeItem = "home", demoHref = "#demo"}) {
   const {language, setLanguage, t} = useLanguage();
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const storedTheme = window.localStorage.getItem("whaid:theme") || "light";
-    setTheme(storedTheme);
-    document.documentElement.setAttribute("data-theme", storedTheme);
+    const initialTheme = document.documentElement.getAttribute("data-theme") === "light"
+      ? "light"
+      : "dark";
+    setTheme(initialTheme);
   }, []);
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem("whaid:theme", theme);
-  }, [theme]);
+  const toggleTheme = () => {
+    const nextTheme = theme === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", nextTheme);
+    window.localStorage.setItem("whaid:theme", nextTheme);
+    setTheme(nextTheme);
+  };
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 10);
@@ -59,7 +62,7 @@ export default function SiteNav({activeItem = "home", demoHref = "#demo"}) {
 
         <div className="nav__actions">
           <button className="chip-btn" id="lang-switch" type="button" aria-label="Cambiar idioma" onClick={() => setLanguage(language === "es" ? "en" : "es")}>{language === "es" ? "EN" : "ES"}</button>
-          <button className="chip-btn" id="theme-switch" type="button" aria-label={themeLabel} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+          <button className="chip-btn" id="theme-switch" type="button" aria-label={themeLabel} onClick={toggleTheme}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </button>
           <a href={demoHref} className="btn btn--primary btn--sm nav__desktop-cta"><span>{t("nav_cta")}</span></a>
