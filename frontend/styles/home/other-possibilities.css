@@ -158,6 +158,38 @@
   font-size: 10px;
   font-weight: 700;
 }
+.other-possibility-card__cta {
+  align-self: flex-start;
+  min-height: 44px;
+  max-width: 100%;
+  margin-top: 18px;
+  padding: 11px 16px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  line-height: 1;
+  box-sizing: border-box;
+  transition:
+    gap var(--dur-2) var(--ease),
+    color var(--dur-2) var(--ease),
+    background-color var(--dur-2) var(--ease),
+    transform var(--dur-1) var(--ease);
+}
+.other-possibility-card__cta:hover {
+  background: rgba(24,167,88,0.09);
+}
+.other-possibility-card__cta:focus-visible {
+  outline: 3px solid var(--c-green);
+  outline-offset: 3px;
+}
+.other-possibility-card__cta:active {
+  transform: translateY(2px);
+}
+[data-theme="dark"] .other-possibility-card__cta:hover {
+  background: rgba(189,255,0,0.10);
+}
+[data-theme="dark"] .other-possibility-card__cta:focus-visible {
+  outline-color: var(--c-lime);
+}
 
 
 @media (max-width: 800px) {
