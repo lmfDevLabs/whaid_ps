@@ -1,8 +1,13 @@
+"use client";
+
 import TranslatedText from "../../../i18n/TranslatedText";
+import useLanguage from "../../../i18n/useLanguage";
 import GifMedia from "./GifMedia";
 import {OTHER_POSSIBILITIES_MEDIA} from "./otherPossibilities.data";
 
 export default function OtherPossibilitiesSection() {
+  const {t} = useLanguage();
+
   return (
     <section className="section section--other-possibilities" id="other-possibilities" aria-labelledby="other-possibilities-title">
       <div className="container">
@@ -25,6 +30,14 @@ export default function OtherPossibilitiesSection() {
                 <li><TranslatedText i18nKey="other_possibilities_real_estate_prompt_2" /></li>
                 <li><TranslatedText i18nKey="other_possibilities_real_estate_prompt_3" /></li>
               </ul>
+              <a
+                href="/blog/bienes-inmuebles-con-whaid"
+                className="learn-more other-possibility-card__cta"
+                aria-label={t("other_possibilities_real_estate_cta_label")}
+              >
+                <span><TranslatedText i18nKey="other_possibilities_cta_text" /></span>
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
             </article>
 
             <article className="other-possibility-card other-possibility-card--inventory">
@@ -39,6 +52,14 @@ export default function OtherPossibilitiesSection() {
                 <li><TranslatedText i18nKey="other_possibilities_inventory_prompt_2" /></li>
                 <li><TranslatedText i18nKey="other_possibilities_inventory_prompt_3" /></li>
               </ul>
+              <a
+                href="/blog/inventarios-ubicados-con-whaid"
+                className="learn-more other-possibility-card__cta"
+                aria-label={t("other_possibilities_inventory_cta_label")}
+              >
+                <span><TranslatedText i18nKey="other_possibilities_cta_text" /></span>
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
             </article>
           </div>
         </div>
