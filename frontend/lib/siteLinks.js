@@ -9,7 +9,7 @@ export const socialLinks = [
   },
   {
     name: "YouTube",
-    href: "https://www.youtube.com/@whaid_rag",
+    href: "https://www.youtube.com/@whaidrag",
     ariaLabel: "YouTube de Whaid",
     icon: "youtube",
   },
