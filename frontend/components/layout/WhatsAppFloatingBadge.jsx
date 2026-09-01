@@ -1,3 +1,7 @@
+"use client";
+
+import {trackAnalyticsEvent} from "../../lib/analytics";
+
 const WHATSAPP_PHONE_NUMBER = "57XXXXXXXXXX";
 const WHATSAPP_PREFILLED_MESSAGE =
   "Hola, quiero saber más sobre Whaid y sus posibilidades para mi espacio.";
@@ -14,6 +18,7 @@ export default function WhatsAppFloatingBadge() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Escribir a Whaid por WhatsApp"
+      onClick={() => trackAnalyticsEvent("whatsapp_click", {placement: "floating_badge"})}
     >
       <span className="whatsapp-floating-badge__copy">
         <strong>¿Qué podría hacer Whaid por tu empresa?</strong>

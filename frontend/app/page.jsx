@@ -15,7 +15,7 @@ import SiteNav from "../components/layout/SiteNav";
 export default function HomePage() {
   return (
     <>
-      <SiteNav activeItem="home" demoHref="#demo" />
+      <SiteNav activeItem="home" demoHref="/#demo" />
       <main>
         <HeroSection />
         <QaStrip />

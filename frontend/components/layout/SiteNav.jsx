@@ -2,6 +2,7 @@
 
 import {useEffect, useState} from "react";
 import useLanguage from "../../i18n/useLanguage";
+import {trackAnalyticsEvent} from "../../lib/analytics";
 const HOME_NAV_LINKS = [
   {href: "/", i18nKey: "nav_home", label: "Home", id: "home"},
   {href: "/#keyshots", i18nKey: "nav_product", label: "Producto", id: "product"},
@@ -11,7 +12,7 @@ const HOME_NAV_LINKS = [
   {href: "/blog", i18nKey: "nav_blog", label: "Blog", id: "blog"},
 ];
 
-export default function SiteNav({activeItem = "home", demoHref = "#demo"}) {
+export default function SiteNav({activeItem = "home", demoHref = "/#demo"}) {
   const {language, setLanguage, t} = useLanguage();
   const [theme, setTheme] = useState("dark");
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,7 +58,7 @@ export default function SiteNav({activeItem = "home", demoHref = "#demo"}) {
               {t(link.i18nKey)}
             </a>
           ))}
-          <a href={demoHref} className="nav__mobile-cta"><span>{t("nav_cta")}</span></a>
+          <a href={demoHref} onClick={() => trackAnalyticsEvent("demo_click", {placement: "navigation_mobile"})} className="nav__mobile-cta"><span>{t("nav_cta")}</span></a>
         </div>
 
         <div className="nav__actions">
@@ -65,7 +66,7 @@ export default function SiteNav({activeItem = "home", demoHref = "#demo"}) {
           <button className="chip-btn" id="theme-switch" type="button" aria-label={themeLabel} onClick={toggleTheme}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
           </button>
-          <a href={demoHref} className="btn btn--primary btn--sm nav__desktop-cta"><span>{t("nav_cta")}</span></a>
+          <a href={demoHref} onClick={() => trackAnalyticsEvent("demo_click", {placement: "navigation_desktop"})} className="btn btn--primary btn--sm nav__desktop-cta"><span>{t("nav_cta")}</span></a>
           <button className="menu-toggle" id="menu-toggle" type="button" aria-label="Menú" aria-expanded={isMenuOpen} aria-controls="nav-menu" onClick={() => setIsMenuOpen((open) => !open)}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg></button>
         </div>
       </div>
