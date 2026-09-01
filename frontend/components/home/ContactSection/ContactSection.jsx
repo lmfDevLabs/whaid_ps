@@ -2,6 +2,7 @@
 
 import {useState} from "react";
 import TranslatedText from "../../../i18n/TranslatedText";
+import {trackAnalyticsEvent} from "../../../lib/analytics";
 
 export default function ContactSection() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -9,6 +10,7 @@ export default function ContactSection() {
   function handleDemoSubmit(event) {
     event.preventDefault();
     setIsSubmitted(true);
+    trackAnalyticsEvent("contact_form_submit");
   }
 
   return (
