@@ -1,3 +1,4 @@
+import Script from "next/script";
 import LanguageProvider from "../i18n/LanguageProvider";
 import CookieConsentProvider from "../components/cookies/CookieConsentProvider";
 import WhatsAppFloatingBadge from "../components/layout/WhatsAppFloatingBadge";
@@ -44,8 +45,8 @@ export default function RootLayout({ children }) {
             <WhatsAppFloatingBadge />
           </CookieConsentProvider>
         </LanguageProvider>
-        <script src="/wa-chat.js" async />
-        <script src="/site.js" async />
+        <Script src="/wa-chat.js" strategy="afterInteractive" />
+        <Script src="/site.js" strategy="afterInteractive" />
       </body>
     </html>
   );
