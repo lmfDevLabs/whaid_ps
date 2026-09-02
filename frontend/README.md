@@ -15,6 +15,8 @@ npm install
 
 El Blog usa la configuración pública de Firebase/Firestore definida en `lib/blogApi.js`. Declara únicamente variables públicas o de servidor requeridas por el entorno de despliegue; no guardes secretos reales en el repositorio.
 
+El formulario de demo requiere `NEXT_PUBLIC_TURNSTILE_SITE_KEY` y `NEXT_PUBLIC_DEMO_FORM_API_URL`. Son los únicos valores del flujo expuestos al navegador; Resend, la secret key de Turnstile, el destinatario y el secreto del rate limit viven exclusivamente en Firebase Functions. Consulta `../.env.example` y `../backend_saas/functions/README.md` para la configuración completa.
+
 ## Comandos
 
 - `npm run dev`: servidor local de Next.js.
