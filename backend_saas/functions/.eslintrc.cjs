@@ -4,7 +4,7 @@ module.exports = {
     node: true,
   },
   parserOptions: {
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2022,
     "sourceType": "module",
   },
   extends: [
@@ -23,6 +23,13 @@ module.exports = {
         mocha: true,
       },
       rules: {},
+    },
+    {
+      files: ["src/controllers/demo.controller.js", "src/routes/demo.routes.js", "src/services/*.service.js", "src/validation/demo.schema.js", "test/*.test.js"],
+      rules: {
+        "max-len": "off",
+        "require-jsdoc": "off",
+      },
     },
   ],
   globals: {},

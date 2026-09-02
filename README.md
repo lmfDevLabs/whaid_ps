@@ -32,3 +32,7 @@ npm run check
 ```
 
 `check` ejecuta validación de traducciones, lint y build de producción.
+
+## Formulario de demo
+
+El Home envía las solicitudes a la Firebase Function existente. La guía de Turnstile, Resend, secretos, Gmail receptor y prueba final está en `backend_saas/functions/README.md`; las variables esperadas se enumeran sin valores reales en `.env.example`.
