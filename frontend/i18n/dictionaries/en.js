@@ -241,7 +241,7 @@ const en = {
             "answer": "I found several companies with services for restaurants, including marketing, point-of-sale software, and commercial furniture."
           },
           {
-            "question": "Where is a specific brand’s booth?",
+            "question": "Where is Adidas’s booth?",
             "answer": "I can help you locate the booth, show the corresponding pavilion, and give you directions inside the venue."
           },
           {

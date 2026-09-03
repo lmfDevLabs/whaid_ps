@@ -241,7 +241,7 @@ const es = {
             "answer": "Encontré varias compañías con servicios para restaurantes, incluyendo marketing, software de punto de venta y mobiliario comercial."
           },
           {
-            "question": "¿Dónde está el stand de una marca específica?",
+            "question": "¿Dónde está el stand de Adidas?",
             "answer": "Puedo ayudarte a ubicar el stand, mostrarte el pabellón correspondiente y darte señales para llegar dentro del recinto."
           },
           {
