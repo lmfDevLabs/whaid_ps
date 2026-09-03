@@ -23,7 +23,7 @@ const es = {
   "k3_title": "Respuestas útiles y contextuales",
   "k3_body": "La respuesta no es una lista fría. Whaid puede explicar opciones, relacionar resultados, orientar por ubicación, destacar horarios y mostrar alternativas relevantes para el visitante.",
   "k4_title": "Vista enriquecida",
-  "k4_body": "Cuando la respuesta necesita más que texto, Whaid puede entregar una vista visual con tarjetas, enlaces, imágenes, ubicaciones y datos clave de las opciones encontradas.",
+  "k4_body": "Cuando la respuesta necesita más que texto, Whaid puede entregar una vista con tarjetas, enlaces, imágenes, ubicaciones y datos clave de las opciones encontradas.",
   "security_badge": "Información pública, acceso controlado",
   "security_title": "Seguridad desde el primer dato",
   "security_subtitle": "Whaid está diseñado para operar con acceso controlado a la información de cada cliente. Solo se hace visible al público la información que el espacio decide publicar y que puede ser consultada por visitantes, usuarios o interesados.",
