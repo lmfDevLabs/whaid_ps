@@ -2,7 +2,7 @@
 
 import {trackAnalyticsEvent} from "../../lib/analytics";
 
-const WHATSAPP_PHONE_NUMBER = "57XXXXXXXXXX";
+const WHATSAPP_PHONE_NUMBER = "573005256068";
 const WHATSAPP_PREFILLED_MESSAGE =
   "Hola, quiero saber más sobre Whaid y sus posibilidades para mi espacio.";
 
