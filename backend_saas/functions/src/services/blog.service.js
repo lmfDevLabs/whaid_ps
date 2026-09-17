@@ -1,6 +1,7 @@
 import {initializeApp, getApps} from "firebase-admin/app";
 import {getFirestore} from "firebase-admin/firestore";
 import {timestampToIsoString} from "../utils/timestamps.js";
+import {normalizeBlogTags} from "../utils/blog-tags.js";
 
 if (!getApps().length) {
   initializeApp();
@@ -34,7 +35,9 @@ const mapBasePost = (doc) => {
     author: safeString(data.author),
     avatar_author: safeNullableString(data.avatar_author),
     role_author: safeNullableString(data.role_author),
-    tags: safeStringArray(data.tags),
+    // `tags` es el campo canónico. Algunos documentos antiguos guardaron un
+    // solo string; la API mantiene una salida homogénea sin migrar Firestore.
+    tags: normalizeBlogTags(data.tags),
     published_at: timestampToIsoString(data.published_at),
   };
 };
