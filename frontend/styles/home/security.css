@@ -45,7 +45,7 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   background: linear-gradient(135deg, rgba(189,255,0,0.26), rgba(24,167,88,0.10));
   border: 1px solid rgba(24,167,88,0.18);
   box-shadow: var(--shadow-sm);
@@ -130,7 +130,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   background: linear-gradient(135deg, rgba(189,255,0,0.20), rgba(24,167,88,0.08));
   border: 1px solid rgba(24,167,88,0.14);
   flex: 0 0 36px;

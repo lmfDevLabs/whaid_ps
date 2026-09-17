@@ -31,7 +31,7 @@
 }
 
 .whatsapp-floating-badge:focus-visible {
-  outline: 3px solid color-mix(in srgb, var(--c-lime) 80%, var(--c-white));
+  outline: 3px solid var(--focus-ring);
   outline-offset: 4px;
 }
 

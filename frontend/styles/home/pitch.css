@@ -103,7 +103,7 @@
   color: var(--c-ink);
 }
 .video-pitch__preview:focus-visible {
-  outline: 3px solid var(--c-lime);
+  outline: 3px solid var(--focus-ring);
   outline-offset: -3px;
 }
 
