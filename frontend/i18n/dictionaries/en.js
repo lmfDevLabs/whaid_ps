@@ -213,6 +213,8 @@ const en = {
   "blog_title_b": "discovery",
   "blog_title_c": ".",
   "blog_sub": "Essays, case studies and technical notes from the Whaid team.",
+  "blog_all": "All",
+  "blog_filter_label": "Filter by category",
   "read_more": "Read more",
   "read_post": "Read post",
   "featured": "Featured",

@@ -39,6 +39,14 @@
   margin: 0 auto;
 }
 @media (max-width: 900px) { .blog-tags { padding: 20px 20px 32px; } }
+@media (max-width: 600px) {
+  .blog-tags {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+  .blog-tag { flex: 0 0 auto; }
+}
 .blog-tag {
   padding: 8px 16px;
   border-radius: 999px;

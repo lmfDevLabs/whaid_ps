@@ -213,6 +213,8 @@ const es = {
   "blog_title_b": "descubrimiento",
   "blog_title_c": ".",
   "blog_sub": "Ensayos, casos de estudio y notas técnicas del equipo de Whaid.",
+  "blog_all": "Todos",
+  "blog_filter_label": "Filtrar por categoría",
   "read_more": "Leer más",
   "read_post": "Leer post",
   "featured": "Destacado",
