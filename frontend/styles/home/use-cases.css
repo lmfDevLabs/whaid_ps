@@ -35,7 +35,7 @@
   font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   margin-bottom: 20px;
 }
 [data-theme="dark"] .usecase__label { color: var(--c-lime); }
@@ -73,7 +73,7 @@
   flex: 0 0 auto;
   font-family: var(--font-display);
   font-size: 48px;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   line-height: 0.95;
   margin: 0;
 }
@@ -150,7 +150,7 @@
   border-color: var(--c-lime);
 }
 .uv-cell .k { opacity: 0.5; font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase; }
-.uv-cell .v { font-size: 14px; color: var(--c-lime); font-family: var(--font-body); font-weight: 500; }
+.uv-cell .v { font-size: 14px; color: var(--accent-foreground); font-family: var(--font-body); font-weight: 500; }
 .uv-cell--compact { padding: 10px; }
 .uv-cell .v--large { font-size: 22px; }
 .uv-cell .dot { width: 6px; height: 6px; border-radius: 50%; display: inline-block; }

@@ -89,7 +89,7 @@
 .qa-strip__answer::before { content: ''; display: block; }
 .qa-strip__item:hover .qa-strip__question,
 .qa-strip__item:focus-visible .qa-strip__question,
-.qa-strip__item--active .qa-strip__question { color: var(--c-lime); }
+.qa-strip__item--active .qa-strip__question { color: var(--accent-foreground); }
 .qa-strip__item:hover .qa-strip__answer,
 .qa-strip__item:focus-visible .qa-strip__answer,
 .qa-strip__item--active .qa-strip__answer {

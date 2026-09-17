@@ -178,7 +178,7 @@
   background: rgba(24,167,88,0.09);
 }
 .other-possibility-card__cta:focus-visible {
-  outline: 3px solid var(--c-green);
+  outline: 3px solid var(--focus-ring);
   outline-offset: 3px;
 }
 .other-possibility-card__cta:active {

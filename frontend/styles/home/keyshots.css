@@ -28,7 +28,7 @@
   font-weight: 600;
   font-size: 11px;
   letter-spacing: 2px;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   margin-bottom: 16px;
   display: flex;
   align-items: center;
@@ -49,7 +49,7 @@
   border: 1px solid rgba(24,167,88,0.2);
   display: inline-flex; align-items: center; justify-content: center;
   margin-bottom: 20px;
-  color: var(--c-green);
+  color: var(--accent-foreground);
 }
 [data-theme="dark"] .keyshot__icon { color: var(--c-lime); border-color: rgba(189,255,0,0.25); }
 .keyshot__icon svg { width: 22px; height: 22px; }
@@ -69,4 +69,3 @@
   margin: 0;
 }
 [data-theme="dark"] .keyshot p { color: var(--c-muted-dark); }
-

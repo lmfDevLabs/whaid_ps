@@ -57,7 +57,10 @@
   --text-on-dark-muted: var(--c-muted-dark);
   --accent:        var(--c-lime);
   --accent-2:      var(--c-green);
-  --link:          var(--c-green);
+  /* Accessible brand foreground on light surfaces (5.42:1 against white). */
+  --accent-foreground: var(--c-green-deep);
+  --focus-ring:    var(--c-green-deep);
+  --link:          var(--c-green-deep);
   --link-dark-bg:  var(--c-lime);
   --link-hover:    var(--c-navy-hover);
   --border:        var(--c-line);
@@ -97,6 +100,8 @@
   --border:     var(--c-line-dark);
   --link:       var(--c-lime);
   --link-hover: var(--c-lime);
+  --accent-foreground: var(--c-lime);
+  --focus-ring: var(--c-lime);
 }
 
 /* ==========================================================================
@@ -130,7 +135,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   font-size: 12px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   display: inline-block;
 }
 [data-theme="dark"] .eyebrow { color: var(--c-lime); }
@@ -254,7 +259,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
   font-size: 13px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   transition: gap var(--dur-2) var(--ease), color var(--dur-2) var(--ease);
 }
 .learn-more:hover { gap: 12px; color: var(--c-navy); }
@@ -301,7 +306,7 @@ button { font: inherit; cursor: pointer; border: none; background: none; color: 
 
 /* Focus ring */
 :focus-visible {
-  outline: 2px solid var(--c-lime);
+  outline: 2px solid var(--focus-ring);
   outline-offset: 3px;
   border-radius: 4px;
 }

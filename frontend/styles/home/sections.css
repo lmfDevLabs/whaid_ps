@@ -15,7 +15,7 @@
 }
 .section__head h2 .accent {
   font-style: italic;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   position: relative;
   white-space: nowrap;
 }

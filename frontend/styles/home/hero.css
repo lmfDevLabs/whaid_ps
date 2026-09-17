@@ -87,7 +87,7 @@
 }
 .hero h1 .accent {
   font-style: italic;
-  color: var(--c-lime);
+  color: var(--accent-foreground);
   position: relative;
   white-space: nowrap;
 }
@@ -170,7 +170,7 @@
 [data-theme="dark"] .hero__lead,
 [data-theme="dark"] .hero__meta-k { color: var(--c-muted-dark); }
 [data-theme="dark"] .hero__secondary-cta { color: var(--c-white); border-color: var(--c-line-dark); }
-.hero__meta-v .dot { color: var(--c-lime); }
+.hero__meta-v .dot { color: var(--accent-foreground); }
 
 /* ---------- WhatsApp chat mock ---------- */
 .wa-phone {
@@ -555,7 +555,7 @@
   font-size: 9.5px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--c-green);
+  color: var(--accent-foreground);
   font-weight: 600;
   margin: 0 0 6px;
 }
